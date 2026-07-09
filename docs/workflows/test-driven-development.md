@@ -27,16 +27,20 @@
 
 ---
 
-## Two Levels of TDD
+## Pragmatic Testing Approach (Value-Driven Testing)
 
-TDD operates at two complementary levels. Both are mandatory.
+Testing is not about ticking boxes or chasing 100% code coverage. It is about confidence, stability, and speed. Focus testing efforts where they provide real business value.
 
-| Level | Driven By | Test Type | Scope | When to Write |
-|-------|-----------|-----------|-------|---------------|
-| **Feature-level** | Acceptance criteria from spec | Integration / E2E | Verifies the feature works as specified from the user's perspective | Before starting implementation of each acceptance criterion |
-| **Code-level** | Implementation needs | Unit tests | Verifies each function/class works correctly in isolation | Before writing each function/class during implementation |
+### When to write tests:
+- **Core Business Logic**: Complex calculations, state transitions, domain rules, and financial operations.
+- **High-Risk Integration Points**: External API integrations, complex database queries, auth/permission checks.
+- **Bug Fixes**: Write a test reproducing a bug before fixing it to prevent regressions.
 
-### How They Work Together
+### When to skip or write minimal tests (e.g., "One Runnable Check"):
+- **Trivial Code**: Simple getters/setters, boilerplate, layout styling, simple UI/HTML changes, straightforward pass-through controllers.
+- **Minor Tweaks**: Small, isolated code modifications with low blast radius. A simple self-check or assertion is often enough.
+
+### Levels of Testing (Use when appropriate)
 
 ```
 Feature-Level (outer loop):
