@@ -1,0 +1,13 @@
+---
+description: >
+  Test-Driven Development workflow for implementing features. Activate when
+  writing code — guides through the red-green-refactor cycle.
+globs:
+alwaysApply: false
+---
+
+Follow the TDD workflow defined in @docs/workflows/test-driven-development.md
+
+Use the test plan template from @docs/templates/test-plan-template.md
+
+Also apply the global rules from @rules/global-rules.md

@@ -1,0 +1,16 @@
+---
+description: >
+  New project setup workflow. Activate when creating a new project from scratch.
+globs:
+alwaysApply: false
+---
+
+Follow the Project Bootstrap workflow defined in @docs/workflows/project-bootstrap.md
+
+Use the following templates as needed:
+- @docs/templates/spec-template.md — Specification template
+- @docs/templates/adr-template.md — ADR template
+- @docs/templates/test-plan-template.md — Test plan template
+- @docs/templates/review-checklist-template.md — Review checklist template
+
+Also apply the global rules from @rules/global-rules.md

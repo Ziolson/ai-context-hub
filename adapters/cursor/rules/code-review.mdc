@@ -1,0 +1,13 @@
+---
+description: >
+  Systematic code review process. Activate when performing a code review,
+  PR review, or quality check.
+globs:
+alwaysApply: false
+---
+
+Follow the Code Review workflow defined in @docs/workflows/code-review.md
+
+Use the review checklist template from @docs/templates/review-checklist-template.md
+
+Also apply the global rules from @rules/global-rules.md

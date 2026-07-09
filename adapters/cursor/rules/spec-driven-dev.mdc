@@ -1,0 +1,15 @@
+---
+description: >
+  Enforces Spec-Driven Development workflow. Activate when adding features,
+  creating endpoints, or modifying architecture.
+globs:
+alwaysApply: false
+---
+
+Follow the Spec-Driven Development workflow defined in @docs/workflows/spec-driven-development.md
+
+Use the following templates:
+- @docs/templates/spec-template.md — Specification template
+- @docs/templates/adr-template.md — ADR template (when architectural decisions are needed)
+
+Also apply the global rules from @rules/global-rules.md

@@ -1,0 +1,7 @@
+---
+description: Universal coding rules that apply to every interaction
+globs:
+alwaysApply: true
+---
+
+Follow the rules defined in @rules/global-rules.md

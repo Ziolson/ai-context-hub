@@ -1,0 +1,11 @@
+---
+description: >
+  Planning the implementation of an approved specification. Activate when
+  breaking down a spec into actionable tasks, dependencies, and milestones.
+globs:
+alwaysApply: false
+---
+
+Follow the Implementation Plan workflow defined in @docs/workflows/implementation-plan.md
+
+Also apply the global rules from @rules/global-rules.md
