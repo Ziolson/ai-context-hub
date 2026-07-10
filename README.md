@@ -59,40 +59,48 @@ Adapters are thin configuration files that **reference** the core docs — they 
 
 ## 🚀 Quick Setup
 
-### Antigravity / Gemini
+The easiest way to connect this repository to your project is using the automated `install.sh` script, which automatically creates the necessary symlinks.
 
-**Option A — Symlink the skills directory:**
+### Option A — Automated Setup (Recommended)
+
+Run the script from your **target project root**, pointing to the cloned `ai-context-hub` directory:
+
+```bash
+# Setup a specific tool (antigravity, cursor, or claude)
+/path/to/ai-context-hub/install.sh [tool_name]
+
+# Setup all tools
+/path/to/ai-context-hub/install.sh all
+```
+
+*This will automatically symlink the core `rules/` and `docs/` folders, and configure your chosen adapter files.*
+
+---
+
+### Option B — Manual Setup
+
+If you prefer to configure the symlinks manually, follow the commands below based on your tool. Make sure to replace `/path/to/ai-context-hub/` with the actual path to your cloned repository.
+
+#### Antigravity / Gemini
+
+**Symlink core folders and the skills directory:**
 
 ```bash
 # From your project root
+ln -s /path/to/ai-context-hub/rules rules
+ln -s /path/to/ai-context-hub/docs docs
 ln -s /path/to/ai-context-hub/adapters/antigravity/skills .agents/skills/ai-context-hub
 cp /path/to/ai-context-hub/adapters/antigravity/AGENTS.md .agents/AGENTS.md
 ```
 
-**Option B — Use `skills.json`:**
+#### Cursor
 
-Add to your `.agents/skills.json`:
-
-```json
-{
-  "entries": [
-    { "path": "/path/to/ai-context-hub/adapters/antigravity/skills" }
-  ]
-}
-```
-
-And copy or symlink `AGENTS.md`:
-
-```bash
-cp /path/to/ai-context-hub/adapters/antigravity/AGENTS.md .agents/AGENTS.md
-```
-
-### Cursor
-
-**Symlink or copy the rules into your project:**
+**Symlink the rules and configuration into your project:**
 
 ```bash
 # From your project root
+ln -s /path/to/ai-context-hub/rules rules
+ln -s /path/to/ai-context-hub/docs docs
 mkdir -p .cursor/rules
 ln -s /path/to/ai-context-hub/adapters/cursor/rules/*.mdc .cursor/rules/
 ```
@@ -100,25 +108,34 @@ ln -s /path/to/ai-context-hub/adapters/cursor/rules/*.mdc .cursor/rules/
 Or copy them directly:
 
 ```bash
+# From your project root
+cp -r /path/to/ai-context-hub/rules rules
+cp -r /path/to/ai-context-hub/docs docs
+mkdir -p .cursor/rules
 cp /path/to/ai-context-hub/adapters/cursor/rules/*.mdc .cursor/rules/
 ```
 
-### Claude Code
+#### Claude Code
 
-**Symlink or copy `CLAUDE.md` to your project root:**
+**Symlink the rules and configuration to your project root:**
 
 ```bash
 # From your project root
+ln -s /path/to/ai-context-hub/rules rules
+ln -s /path/to/ai-context-hub/docs docs
 ln -s /path/to/ai-context-hub/adapters/claude-code/CLAUDE.md CLAUDE.md
 ```
 
 Or copy:
 
 ```bash
+# From your project root
+cp -r /path/to/ai-context-hub/rules rules
+cp -r /path/to/ai-context-hub/docs docs
 cp /path/to/ai-context-hub/adapters/claude-code/CLAUDE.md CLAUDE.md
 ```
 
-> **Note:** All adapters reference files using relative paths from the project root. Make sure the core `docs/` and `rules/` directories are accessible. You can symlink them into your project or configure your tool to include the ai-context-hub path.
+> **Note:** All adapters reference files using relative paths from the project root. The commands above ensure that the core `docs/` and `rules/` directories are placed or symlinked directly at the root of your project.
 
 ---
 
