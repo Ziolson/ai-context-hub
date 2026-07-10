@@ -8,9 +8,10 @@
 ## 1. Workflow Principles
 
 - **Spec-Driven Development**: Always follow the sequence: **understand → specify → approve → implement**. Never jump to coding without understanding what needs to be built and why.
-- **Pragmatic Testing (Value-Driven Testing)**: Use tests where they provide real value (business logic, complex algorithms, critical paths). Avoid enforcing rigid TDD and writing tests for minor tweaks, simple one-liners, or purely structural code without business logic. Aim for stability and confidence, not 100% code coverage at all costs.
+- **Pragmatic Testing (Value-Driven Testing)**: Use tests where they provide real value (business logic, complex algorithms, critical paths). Avoid enforcing rigid TDD and writing tests for minor tweaks, simple one-liners, or purely structural code without business logic. Aim for stability and confidence, not 100% code coverage at all costs. Write a proper unit test (not just an assert) when the logic has **multiple branches**, **external dependencies** (DB, API, filesystem), or is part of a **shared/reused module**. In all other cases, a single runnable check is sufficient.
 - **No coding without clarity**: Never start writing code without a clear understanding of the requirements. If the requirements are ambiguous, ask for clarification first.
 - **Plan before you act**: Present a plan for approval before making significant changes. "Significant" means anything that touches more than one file, changes an API contract, modifies data models, or alters architecture.
+
 
 ## 2. Code Quality Fundamentals
 
@@ -81,7 +82,7 @@ Before writing any code, stop at the first rung that holds:
 
 ### Key Rules:
 - **No Abstractions**: No abstractions that weren't explicitly requested.
-- **No Boilerplate / Dependencies**: No boilerplate nobody asked for. No new dependency if it can be avoided.
+- **No Boilerplate / Dependencies**: No boilerplate nobody asked for. No new dependency if it can be avoided. If a new dependency is genuinely required, **do not add it silently** — propose it to the user first with a brief justification (what it solves, why existing options are insufficient) and wait for approval.
 - **Root Cause over Symptom**: Fix bugs at their source, not by patching callers. Grep every caller of the function you touch and fix the shared function once — one guard there is a smaller diff than one per caller.
 - **Boring over Clever**: Deletion over addition. Boring over clever. Fewest files possible. Shortest working diff wins.
 - **Question Complexity**: Question complex requests: "Do you actually need X, or does Y cover it?"
@@ -97,4 +98,7 @@ Before writing any code, stop at the first rung that holds:
 - **Anything explicitly requested**.
 
 ### Validation & Verification (One Runnable Check):
-Lazy code without its check is unfinished: non-trivial logic leaves **ONE** runnable check behind, the smallest thing that fails if the logic breaks (an assert-based demo/self-check or one small test file; no frameworks, no fixtures). Trivial one-liners need no test.
+Lazy code without its check is unfinished: non-trivial logic leaves **ONE** runnable check behind, the smallest thing that fails if the logic breaks:
+- **Inline assert / self-check** — for isolated logic with no external dependencies.
+- **Separate test file** — for logic with branches, shared utilities, or external calls.
+Trivial one-liners need no test.

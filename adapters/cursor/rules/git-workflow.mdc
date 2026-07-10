@@ -1,0 +1,7 @@
+---
+description: Git branching, commit messages, pull requests, and code integration workflows.
+globs: ""
+alwaysApply: false
+---
+
+Follow the Git workflow and commit rules defined in @rules/practices/git-workflow.md

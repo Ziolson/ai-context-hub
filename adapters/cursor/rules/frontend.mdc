@@ -1,0 +1,7 @@
+---
+description: Frontend architecture, component design, styling, state management, accessibility (a11y), and performance optimization.
+globs: "**/*.{ts,tsx,js,jsx,css,scss,html,vue,svelte}"
+alwaysApply: false
+---
+
+Follow the frontend best practices defined in @rules/practices/frontend.md

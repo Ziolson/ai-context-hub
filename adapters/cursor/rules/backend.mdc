@@ -1,0 +1,7 @@
+---
+description: Backend application architecture, dependency injection, transaction handling, logging, and caching.
+globs: "**/*.{go,py,java,ts,js,rs,cs,php}"
+alwaysApply: false
+---
+
+Follow the backend architecture best practices defined in @rules/practices/backend.md

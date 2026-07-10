@@ -1,0 +1,7 @@
+---
+description: Database design, schemas, naming conventions, indexes, query optimization, and zero-downtime migrations.
+globs: "**/*.sql", "**/migrations/**", "**/schema.prisma", "**/db/**", "**/database/**"
+alwaysApply: false
+---
+
+Follow the database design and migrations best practices defined in @rules/practices/database.md

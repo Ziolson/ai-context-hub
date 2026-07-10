@@ -1,0 +1,7 @@
+---
+description: REST API design standards, endpoint naming, HTTP methods, response structures, and status codes.
+globs: "**/routes/**", "**/controllers/**", "**/api/**", "**/endpoints/**"
+alwaysApply: false
+---
+
+Follow the REST API design rules defined in @rules/practices/api-design.md
