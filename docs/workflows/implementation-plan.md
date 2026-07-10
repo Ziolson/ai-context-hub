@@ -87,11 +87,11 @@ Brief overview of what will be implemented and the general approach.
 **Description**: What this step accomplishes and why it comes first.
 
 **Files to create/modify**:
-- `path/to/file.ts` — Description of changes
-- `path/to/new-file.ts` — New file, purpose
+- `path/to/file.ext` — Description of changes
+- `path/to/new-file.ext` — New file, purpose
 
 **Tests**:
-- `path/to/file.test.ts` — Test descriptions
+- `path/to/file.test.ext` — Test descriptions
 
 **Depends on**: None (or list previous steps)
 
@@ -102,10 +102,10 @@ Brief overview of what will be implemented and the general approach.
 **Description**: What this step accomplishes.
 
 **Files to create/modify**:
-- `path/to/file.ts` — Description of changes
+- `path/to/file.ext` — Description of changes
 
 **Tests**:
-- `path/to/file.test.ts` — Test descriptions
+- `path/to/file.test.ext` — Test descriptions
 
 **Depends on**: Step 1
 

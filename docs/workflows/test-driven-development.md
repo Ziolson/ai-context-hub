@@ -98,16 +98,16 @@ Test:
 
 **Example of "minimum code":**
 
-```python
-# 🔴 Test: should_return_empty_list_when_no_users_exist
-def test_should_return_empty_list_when_no_users_exist():
-    repo = UserRepository()
-    assert repo.find_all() == []
+```
+// 🔴 Test
+TEST should_return_empty_list_when_no_items_exist
+    repo = new ItemRepository()
+    ASSERT repo.findAll() == []
 
-# 🟢 Minimum implementation:
-class UserRepository:
-    def find_all(self):
-        return []
+// 🟢 Minimum implementation
+CLASS ItemRepository
+    FUNCTION findAll()
+        RETURN []
 ```
 
 Yes, returning an empty list is valid at this stage. The next test will force a more complete implementation.
@@ -183,17 +183,17 @@ Structure your tests according to the testing pyramid:
 
 ### Test Behavior, Not Implementation
 
-```python
-# ✅ Tests behavior: what the function does
-def test_should_calculate_total_with_tax_when_items_provided():
-    cart = Cart(items=[Item(price=100), Item(price=200)])
-    assert cart.total(tax_rate=0.1) == 330.0
+```
+// ✅ Tests behavior: what the function does
+TEST should_calculate_total_with_tax_when_items_provided
+    cart = new Cart(items: [Item(price=100), Item(price=200)])
+    ASSERT cart.total(taxRate=0.1) == 330.0
 
-# ❌ Tests implementation: how the function does it
-def test_should_call_sum_on_prices():
-    cart = Cart(items=[Item(price=100)])
-    cart.total(tax_rate=0.1)
-    assert cart._prices_summed == True  # Testing internal state
+// ❌ Tests implementation: how the function does it
+TEST should_call_sum_on_prices
+    cart = new Cart(items: [Item(price=100)])
+    cart.total(taxRate=0.1)
+    ASSERT cart._internalPricesFlag == true  // Testing internal/private state
 ```
 
 ### Tests Must Be Independent
@@ -209,12 +209,11 @@ def test_should_call_sum_on_prices():
 - Use factory functions or builders to construct test objects
 - Keep fixture data close to reality but minimal
 
-```python
-# ✅ Factory function
-def make_user(email="test@example.com", role="member", **overrides):
-    defaults = {"name": "Test User", "email": email, "role": role, "active": True}
-    defaults.update(overrides)
-    return User(**defaults)
+```
+// ✅ Factory / builder pattern
+FUNCTION makeItem(overrides)
+    defaults = { id: 1, name: "Default Item", status: "active" }
+    RETURN merge(defaults, overrides)
 ```
 
 ### Meaningful Coverage

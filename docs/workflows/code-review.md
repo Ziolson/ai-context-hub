@@ -79,7 +79,7 @@ Review every changed file against the following checklist. For each category, no
 | | Pagination | Are list endpoints paginated? Could unbounded queries return millions of rows? |
 | | Resource management | Are connections, files, and streams properly closed? |
 | | Unnecessary work | Is there computation that could be cached, deferred, or eliminated? |
-| **Documentation** | API docs | Do public functions/methods have docstrings/JSDoc? |
+| **Documentation** | API docs | Do public functions/methods have documentation comments/docstrings? |
 | | Comments | Do complex business rules have comments explaining *why*? Are there stale or misleading comments? |
 | | README | Does the README need updating for the new feature? |
 
@@ -123,7 +123,7 @@ Brief overall assessment of the implementation quality, structure, and completen
 ### 🔴 Must Fix
 
 #### R-1: <Title>
-- **File**: `path/to/file.ts:42`
+- **File**: `path/to/file.ext:42`
 - **Issue**: Description of the problem
 - **Impact**: Why this matters
 - **Suggestion**: How to fix it
@@ -138,7 +138,7 @@ Brief overall assessment of the implementation quality, structure, and completen
 ### 🟡 Should Fix
 
 #### R-2: <Title>
-- **File**: `path/to/file.ts:78`
+- **File**: `path/to/file.ext:78`
 - **Issue**: Description of the concern
 - **Suggestion**: Recommended improvement
 
@@ -147,7 +147,7 @@ Brief overall assessment of the implementation quality, structure, and completen
 ### 🟢 Suggestions
 
 #### R-3: <Title>
-- **File**: `path/to/file.ts:15`
+- **File**: `path/to/file.ext:15`
 - **Suggestion**: Alternative approach or improvement
 
 ---
@@ -155,7 +155,7 @@ Brief overall assessment of the implementation quality, structure, and completen
 ### 💬 Questions
 
 #### R-4: <Title>
-- **File**: `path/to/file.ts:93`
+- **File**: `path/to/file.ext:93`
 - **Question**: What needs clarification
 
 ---

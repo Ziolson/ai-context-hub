@@ -26,7 +26,7 @@
 
 ## 3. Error Handling & Robustness
 
-- **Never silently swallow exceptions/errors**: Every `catch`/`except`/`rescue` block must either handle the error meaningfully (recover, retry, fallback) or re-raise it. Empty catch blocks are forbidden.
+- **Never silently swallow exceptions/errors**: Every error/exception handling block (e.g. `catch`, `except`, `rescue`) must either handle the error meaningfully (recover, retry, fallback) or re-raise it. Empty catch blocks are forbidden.
 - **Context-rich error messages**: Every error message must include: **what** happened, **where** it happened, and **why** it matters. Include relevant variable values when safe to do so.
   - ✅ `Failed to create user: email 'foo@bar.com' already exists in tenant 'acme-corp'`
   - ❌ `Error occurred`
@@ -35,7 +35,7 @@
 
 ## 4. Documentation
 
-- **Public API documentation**: Every public function, method, class, and module must have a docstring (Python), JSDoc (JavaScript/TypeScript), or equivalent. Include: purpose, parameters, return value, exceptions/errors thrown.
+- **Public API documentation**: Every public function, method, class, and module must have a documentation comment (such as a docstring or block comment) or equivalent. Include: purpose, parameters, return value, exceptions/errors thrown.
 - **Explain the *why***: Complex business logic requires inline comments explaining **why** a decision was made, not **what** the code does. The code shows *what*; comments show *why*.
   - ✅ `// Retry up to 3 times because the payment gateway occasionally returns transient 503s`
   - ❌ `// Retry 3 times`

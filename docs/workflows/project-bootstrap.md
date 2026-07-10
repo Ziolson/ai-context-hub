@@ -62,12 +62,7 @@ A clear understanding of:
 
 ### Actions
 
-1. **Initialize the project** using the appropriate tool:
-   - `npm init` / `npx create-*` for JavaScript/TypeScript projects
-   - `cargo init` for Rust
-   - `go mod init` for Go
-   - `poetry init` / `uv init` for Python
-   - Framework-specific CLI for frameworks (Next.js, Django, Spring Boot, etc.)
+1. **Initialize the project** using the appropriate initialization command or tool for the chosen technology stack (e.g., package initializer, project generator, or framework CLI).
 
 2. **Set up the directory structure** following conventions for the chosen stack. Example for a typical backend API:
 
@@ -122,57 +117,42 @@ A clear understanding of:
 
 ### Linter & Formatter
 
-Set up language-appropriate tools:
+Configure the standard code analysis, style checking (linting), and formatting tools for the chosen stack.
 
-| Language | Linter | Formatter |
-|----------|--------|-----------|
-| TypeScript/JavaScript | ESLint | Prettier |
-| Python | Ruff (lint + format) | Ruff |
-| Go | golangci-lint | gofmt |
-| Rust | clippy | rustfmt |
-| Java/Kotlin | Checkstyle / ktlint | google-java-format / ktlint |
-
-**Configuration**: Create config files with sensible defaults. Extend from popular shared configs when available (e.g., `eslint:recommended`, `@typescript-eslint/recommended`).
+**Configuration**:
+- Create configuration files for style guides and static analysis with sensible defaults.
+- Choose settings that are standard for the ecosystem and extend from popular shared configurations.
+- Ensure the formatter and linter configurations do not conflict.
 
 ### Test Framework
 
-Set up the testing framework and structure:
+Configure the testing framework and test runner.
 
-| Language | Framework | Notes |
-|----------|-----------|-------|
-| TypeScript/JavaScript | Jest or Vitest | Vitest for Vite-based projects |
-| Python | pytest | With `pytest-cov` for coverage |
-| Go | Built-in `testing` | With `testify` for assertions |
-| Rust | Built-in `#[test]` | With integration test directory |
-| Java | JUnit 5 | With Mockito for mocking |
-
-Create example test files to establish patterns:
-- `tests/unit/example.test.ts` — Shows unit test conventions
-- `tests/integration/example.test.ts` — Shows integration test setup
+- Set up unit and integration test directories.
+- Create example test files with basic configurations to establish naming and assertions patterns for unit and integration testing.
+- Configure code coverage reporting tools if applicable.
 
 ### Containerization (Optional)
 
 If the project will be containerized:
 
-- Create `Dockerfile` with multi-stage build (build → production)
-- Create `docker-compose.yml` for local development (app + database + other services)
-- Create `.dockerignore` to exclude unnecessary files
+- Create a multi-stage container build configuration file (e.g., `Dockerfile`) targeting build vs production environments.
+- Create a container orchestrator file (e.g., `docker-compose.yml`) for local development (orchestrating the application, databases, and dependencies).
+- Create a container exclusion file (e.g., `.dockerignore`) to exclude unnecessary files.
 
-### Scripts
+### Task Runner & Scripts
 
-Add common development scripts to `package.json` / `Makefile` / `Taskfile` / `justfile`:
+Add common tasks or scripts to the project runner (e.g., package manager scripts, `Makefile`, `Taskfile`, or similar task runner):
 
-```
-dev          — Start development server with hot reload
-test         — Run all tests
-test:unit    — Run unit tests only
-test:int     — Run integration tests only
-test:cov     — Run tests with coverage report
-lint         — Run linter
-format       — Run formatter
-build        — Build for production
-db:migrate   — Run database migrations
-```
+- **dev** / **start**: Start the development server or application with hot-reload.
+- **test**: Run the entire test suite.
+- **test:unit**: Run unit tests only.
+- **test:integration**: Run integration tests only.
+- **test:coverage**: Run tests and generate a coverage report.
+- **lint**: Run code analysis and style checks.
+- **format**: Format all source files.
+- **build**: Build the application for production.
+- **db:migrate**: Run database migrations (if database is used).
 
 ---
 
@@ -182,16 +162,11 @@ db:migrate   — Run database migrations
 
 ### Pre-commit Hooks
 
-Set up pre-commit hooks using the appropriate tool:
+Set up local automated checks (such as pre-commit hooks) using the standard tool for the ecosystem.
 
-- **JavaScript/TypeScript**: `husky` + `lint-staged`
-- **Python**: `pre-commit` framework
-- **Go**: Custom Git hooks or `pre-commit`
-- **Language-agnostic**: `lefthook`
-
-**Minimum hooks:**
-- `pre-commit`: Run linter and formatter on staged files
-- `commit-msg`: Validate Conventional Commit format
+**Minimum automated gates:**
+- Run code analysis (linter) and formatting on staged or modified files.
+- Validate commit messages to ensure they follow Conventional Commit guidelines.
 
 ### Code Coverage
 
@@ -203,15 +178,15 @@ Configure coverage thresholds:
 
 ### .gitignore
 
-Create a comprehensive `.gitignore` for the chosen stack. Must include:
+Create a comprehensive git exclusion file (e.g., `.gitignore`). Must exclude:
 
-- Build artifacts and compiled output
-- Dependency directories (`node_modules/`, `venv/`, `.venv/`)
-- IDE-specific files (`.idea/`, `.vscode/settings.json`)
-- Environment files (`.env`, `.env.local` — but commit `.env.example`)
-- OS files (`.DS_Store`, `Thumbs.db`)
-- Coverage reports and test artifacts
-- Log files
+- Build/compiled artifacts and output directories
+- External dependency directories (e.g. packages, vendor folders, virtual environments)
+- Editor and IDE-specific files/settings
+- Local environment configuration files (always commit a template file, e.g., `.env.example`)
+- Operating system temporary files
+- Local test reports and coverage outputs
+- Application logs and transient runtime files
 
 ---
 
@@ -253,34 +228,34 @@ What this project does and why it exists.
 
 ### Prerequisites
 
-- Node.js >= 20 (or relevant runtime)
-- Docker (optional, for local database)
+- <language/runtime version>
+- <any external dependencies, e.g., database, Docker>
 
 ### Setup
 
-\```bash
+```bash
 # Clone the repository
 git clone <repo-url>
 cd <project-name>
 
 # Install dependencies
-npm install
+<install-dependencies-command>
 
 # Set up environment
 cp .env.example .env
 # Edit .env with your values
 
 # Start development
-npm run dev
-\```
+<run-dev-command>
+```
 
 ### Running Tests
 
-\```bash
-npm test          # All tests
-npm run test:unit # Unit tests only
-npm run test:cov  # With coverage
-\```
+```bash
+<run-tests-command>          # All tests
+<run-unit-tests-command>     # Unit tests only
+<run-coverage-command>       # With coverage
+```
 
 ## Project Structure
 
@@ -353,10 +328,10 @@ Create `docs/adr/ADR-001-initial-architecture.md`:
 
 1. **Review everything**: Walk through the created files with the user
 2. **Verify the setup**:
-   - `npm install` (or equivalent) succeeds
-   - `npm run lint` passes
-   - `npm test` passes (example tests)
-   - `npm run build` succeeds (if applicable)
+   - Dependency installation command succeeds
+   - Code analysis/linting passes
+   - Test execution command passes (including example tests)
+   - Production build command succeeds (if applicable)
 3. **Initial commit**:
    ```
    chore: bootstrap <project-name>
