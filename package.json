@@ -1,0 +1,14 @@
+{
+  "name": "ai-context-hub",
+  "version": "1.0.0",
+  "description": "Tool-neutral knowledge base of workflow rules and skills for AI-assisted development",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  }
+}

@@ -104,7 +104,7 @@ Every piece of feedback must be categorized by severity:
 
 Create `docs/features/<feature-name>/review.md`:
 
-```markdown
+````markdown
 # Code Review: <Feature Name>
 
 | Field       | Value            |
@@ -171,7 +171,7 @@ Brief overall assessment of the implementation quality, structure, and completen
 | Security | ✅ Pass / ⚠️ Issues Found |
 | Performance | ✅ Pass / ⚠️ Issues Found |
 | Documentation | ✅ Pass / ⚠️ Issues Found |
-```
+````
 
 ### Feedback Guidelines
 
@@ -201,7 +201,7 @@ Brief overall assessment of the implementation quality, structure, and completen
 
 When the review passes, suggest a commit message following Conventional Commits:
 
-```
+```text
 feat(<scope>): <short description>
 
 <body explaining what was built and why>

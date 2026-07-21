@@ -47,7 +47,7 @@ Rules:
 - **Use design tokens**: Define spacing, colors, and typography as variables/tokens — never hardcode magic values like `margin: 13px` or `color: #1a2b3c` inline
 - **Mobile-first**: Write styles for mobile viewport first, then add breakpoints for larger screens
 - **Avoid overriding framework/library styles directly**: Extend or configure them instead — overrides break on upgrades
-- **No inline styles for layout/theme**: Inline styles (`style={{ color: 'red' }}`) are acceptable for truly dynamic values only (e.g., progress bar width from data). Static styles belong in CSS.
+- **No inline styles for layout/theme**: Inline styles (`style={ { color: 'red' } }`) are acceptable for truly dynamic values only (e.g., progress bar width from data). Static styles belong in CSS.
 - **Class naming (when using vanilla CSS)**: Use BEM or a consistent naming convention. Avoid single-word class names that risk collisions.
 
 ---

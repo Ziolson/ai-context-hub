@@ -10,6 +10,9 @@ AI Context Hub provides a single source of truth for development workflows — S
 
 ```
 ai-context-hub/
+├── .vitepress/                   # VitePress documentation site configuration
+├── .github/workflows/deploy.yml  # Automated GitHub Pages deployment
+├── index.md                      # Documentation landing page
 ├── rules/                        # Global coding rules
 │   └── global-rules.md           # Universal rules for every interaction
 ├── docs/
@@ -54,6 +57,22 @@ Adapters are thin configuration files that **reference** the core docs — they 
 | **Antigravity / Gemini** | `AGENTS.md` + `SKILL.md` | Global rules + 5 skills |
 | **Cursor** | `.mdc` rules | 6 rule files with `@file` references |
 | **Claude Code** | `CLAUDE.md` | Single file referencing all docs |
+
+---
+
+## 🌐 Documentation Site
+
+Explore the full documentation, workflows, and rule reference online at **[ziolson.github.io/ai-context-hub](https://ziolson.github.io/ai-context-hub/)**.
+
+To run the documentation site locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start local dev server
+npm run docs:dev
+```
 
 ---
 
@@ -253,4 +272,4 @@ Upcoming skills for technology-specific workflows:
 
 ## 📄 License
 
-See [LICENSE](./LICENSE) for details.
+See [LICENSE](https://github.com/Ziolson/ai-context-hub/blob/main/LICENSE) for details.

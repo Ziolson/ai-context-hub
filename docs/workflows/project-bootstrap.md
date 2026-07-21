@@ -208,7 +208,7 @@ docs/
 
 Create a comprehensive README with:
 
-```markdown
+````markdown
 # <Project Name>
 
 <One-line description>
@@ -270,7 +270,7 @@ Brief explanation of the directory structure and where to find things.
 ## License
 
 <License type>
-```
+````
 
 ### Project-Specific Rules
 
