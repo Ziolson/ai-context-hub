@@ -39,7 +39,6 @@ Separate the application into distinct layers with strict dependency direction:
 - Use constructor injection as the default (most visible, easiest to test)
   - ✅ `constructor(private readonly userRepo: UserRepository)`
   - ❌ `const userRepo = new PostgresUserRepository()` inside a service
-- This makes unit testing possible without mocking entire modules
 
 ---
 

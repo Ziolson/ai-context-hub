@@ -23,7 +23,7 @@
 
 ## 2. State Management
 
-Follow this hierarchy — start at the top and only move down when necessary:
+Use this hierarchy — start at the top, only move down when necessary:
 
 | Level | When to use | Examples |
 |-------|-------------|---------|
@@ -35,7 +35,7 @@ Follow this hierarchy — start at the top and only move down when necessary:
 Rules:
 - **Do not put server data in global state** — use a server-state library (React Query, SWR, Apollo, etc.) with caching instead
 - **Global state is a last resort** — question every addition to a global store
-- **Derive state where possible**: Compute values from existing state rather than storing duplicates
+- **Derive state where possible** — compute values from existing state rather than storing duplicates:
   - ✅ Compute `isFormValid` from field values on each render
   - ❌ Store `isFormValid` as a separate state variable and keep it in sync
 

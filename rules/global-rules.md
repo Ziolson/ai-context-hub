@@ -15,7 +15,7 @@
 
 ## 2. Code Quality Fundamentals
 
-- **SOLID Principles**: Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion across all object-oriented code.
+- **SOLID Principles**: Apply Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, and Dependency Inversion in all object-oriented code.
 - **DRY** (Don't Repeat Yourself): Extract repeated logic into shared functions, utilities, or base classes. But don't over-abstract — two instances of similar code are not always duplication.
 - **KISS** (Keep It Simple, Stupid): Prefer the simplest solution that meets the requirements. Complexity must be justified by a concrete need, not a hypothetical future one.
 - **YAGNI** (You Aren't Gonna Need It): Do not build features, abstractions, or infrastructure for requirements that don't exist yet.
@@ -45,6 +45,8 @@
 
 ## 5. Security Baseline
 
+> This section covers the non-negotiable minimums. For full implementation detail — authentication, authorization, CORS, rate limiting, SSRF, file uploads, and security headers — see `rules/practices/security.md`.
+
 - **No hardcoded secrets**: Never hardcode passwords, API keys, tokens, certificates, or any credentials in source code. Use environment variables, secret managers, or configuration files excluded from version control.
 - **Sanitize external inputs**: All data from external sources (user input, API responses, file uploads, query parameters) must be sanitized and validated before use. Assume all external input is hostile.
 - **Parameterized queries**: Always use parameterized queries or prepared statements for database access. Never concatenate user input into SQL, NoSQL queries, or shell commands.
@@ -61,7 +63,7 @@
   - `docs:` — Documentation changes
   - `chore:` — Build process, tooling, or auxiliary changes
   - Include scope when helpful: `feat(auth): add OAuth2 login flow`
-- **Ask, don't assume**: When uncertain about requirements, context, or user intent — ask for clarification rather than making assumptions. A clarifying question is always cheaper than a wrong implementation.
+- **Ask, don’t assume**: When uncertain about requirements, context, or user intent — ask for clarification. A clarifying question is cheaper than a wrong implementation.
 
 ## 7. Lazy Senior Developer Philosophy (Efficiency Mode)
 

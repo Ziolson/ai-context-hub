@@ -61,7 +61,7 @@ Review every changed file against the following checklist. For each category, no
 | | Edge cases | Are boundary conditions handled? Empty collections, null values, concurrent access? |
 | | Error handling | Are errors caught and handled meaningfully? Do error messages include context? Are exceptions never silently swallowed? |
 | **Tests** | Coverage | Do tests cover happy path, error paths, and edge cases? Are acceptance criteria covered by feature-level tests? |
-| | Naming | Do test names follow `should_[behavior]_when_[condition]`? |
+| | Naming | Do test names follow `should_[behavior]_when_[condition]`? See `rules/practices/testing.md` §3. |
 | | Independence | Can each test run in isolation? No shared mutable state? |
 | | Assertions | Are assertions specific and meaningful? No `assertTrue(result != null)` when `assertEquals` is more appropriate? |
 | **Design** | SOLID principles | Single responsibility? Open/closed? Proper abstractions? Dependency inversion? |

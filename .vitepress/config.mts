@@ -43,7 +43,9 @@ export default defineConfig({
           { text: 'Frontend Practices', link: '/rules/practices/frontend' },
           { text: 'API Design', link: '/rules/practices/api-design' },
           { text: 'Database Practices', link: '/rules/practices/database' },
-          { text: 'Git Workflow', link: '/rules/practices/git-workflow' }
+          { text: 'Git Workflow', link: '/rules/practices/git-workflow' },
+          { text: 'Testing Practices', link: '/rules/practices/testing' },
+          { text: 'Security Practices', link: '/rules/practices/security' }
         ]
       },
       {

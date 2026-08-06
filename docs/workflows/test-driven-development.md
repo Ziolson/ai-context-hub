@@ -27,18 +27,9 @@
 
 ---
 
-## Pragmatic Testing Approach (Value-Driven Testing)
+## Testing Standards
 
-Testing is not about ticking boxes or chasing 100% code coverage. It is about confidence, stability, and speed. Focus testing efforts where they provide real business value.
-
-### When to write tests:
-- **Core Business Logic**: Complex calculations, state transitions, domain rules, and financial operations.
-- **High-Risk Integration Points**: External API integrations, complex database queries, auth/permission checks.
-- **Bug Fixes**: Write a test reproducing a bug before fixing it to prevent regressions.
-
-### When to skip or write minimal tests (e.g., "One Runnable Check"):
-- **Trivial Code**: Simple getters/setters, boilerplate, layout styling, simple UI/HTML changes, straightforward pass-through controllers.
-- **Minor Tweaks**: Small, isolated code modifications with low blast radius. A simple self-check or assertion is often enough.
+> Testing philosophy, the pyramid, naming conventions, test doubles strategy, coverage policy, and external integration testing are defined in **`rules/practices/testing.md`**. Read it before implementing tests.
 
 ### Levels of Testing (Use when appropriate)
 
@@ -129,25 +120,11 @@ Yes, returning an empty list is valid at this stage. The next test will force a 
 
 ---
 
-## Test Naming Convention
+## Testing Reference
 
-Use the format: `should_[expected behavior]_when_[condition]`
+> Testing philosophy, the full pyramid with speed targets, naming conventions, test doubles strategy, coverage policy, and external integration patterns are defined in **`rules/practices/testing.md`**. Read it before implementing tests.
 
-| ✅ Good | ❌ Bad |
-|---------|--------|
-| `should_return_user_when_valid_id_provided` | `test_get_user` |
-| `should_throw_not_found_when_user_does_not_exist` | `test_error` |
-| `should_hash_password_when_plain_text_provided` | `test_password_hashing` |
-| `should_return_empty_list_when_no_orders_exist` | `test_orders` |
-| `should_deny_access_when_token_expired` | `test_auth` |
-
-The test name should read like a sentence and make the test's purpose immediately clear without reading the test body.
-
----
-
-## Testing Pyramid
-
-Structure your tests according to the testing pyramid:
+Quick pyramid reference:
 
 ```
         ╱ ╲
@@ -158,70 +135,6 @@ Structure your tests according to the testing pyramid:
    ╱    Unit Tests   ╲  Many — Business logic, pure functions
   ╱───────────────────╲  Fast, isolated, no I/O
 ```
-
-### Unit Tests (Many, Fast, Isolated)
-
-- **What to test**: Business logic, pure functions, domain rules, calculations, validations, transformations
-- **Characteristics**: No I/O, no database, no network, no filesystem. Uses mocks/stubs for external dependencies.
-- **Speed target**: Entire unit test suite runs in under 10 seconds
-
-### Integration Tests (Some, Slower)
-
-- **What to test**: Repository queries against real database, API endpoint request/response cycles, message queue producers/consumers, external service clients
-- **Characteristics**: Uses real dependencies (test database, test containers) or realistic fakes. Tests the seams between components.
-- **Speed target**: Entire integration test suite runs in under 2 minutes
-
-### E2E Tests (Few, Slowest)
-
-- **What to test**: Critical user journeys that cross multiple services or layers — login flow, checkout process, data export pipeline
-- **Characteristics**: Tests the system as a user would experience it. Uses real UI, real APIs, real databases.
-- **Speed target**: Each E2E test runs in under 30 seconds
-
----
-
-## Testing Guidelines
-
-### Test Behavior, Not Implementation
-
-```
-// ✅ Tests behavior: what the function does
-TEST should_calculate_total_with_tax_when_items_provided
-    cart = new Cart(items: [Item(price=100), Item(price=200)])
-    ASSERT cart.total(taxRate=0.1) == 330.0
-
-// ❌ Tests implementation: how the function does it
-TEST should_call_sum_on_prices
-    cart = new Cart(items: [Item(price=100)])
-    cart.total(taxRate=0.1)
-    ASSERT cart._internalPricesFlag == true  // Testing internal/private state
-```
-
-### Tests Must Be Independent
-
-- Each test must be able to run in isolation and in any order
-- Tests must not depend on shared mutable state
-- Use setup/teardown or fixtures to create fresh state for each test
-- Never rely on test execution order
-
-### Use Test Fixtures and Factories
-
-- Create reusable test fixtures for common test data
-- Use factory functions or builders to construct test objects
-- Keep fixture data close to reality but minimal
-
-```
-// ✅ Factory / builder pattern
-FUNCTION makeItem(overrides)
-    defaults = { id: 1, name: "Default Item", status: "active" }
-    RETURN merge(defaults, overrides)
-```
-
-### Meaningful Coverage
-
-- Aim for high coverage of **business logic and domain rules**
-- Do not chase 100% line coverage — focus on meaningful scenarios
-- Cover: happy path, error paths, edge cases, boundary conditions
-- Skip: trivial getters/setters, framework boilerplate, generated code
 
 ---
 
