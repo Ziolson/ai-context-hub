@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # AI Context Hub Installer
-# Creates symlinks from the current project to your local ai-context-hub clone.
+# Copies core rules, docs, and tool adapters into the current project root
+# so that all configuration files can be committed directly to Git.
 
 set -e
 
@@ -28,57 +29,75 @@ fi
 
 TOOL=$1
 
-# 1. Always link core directories (rules and docs)
-echo "🔗 Linking core rules and docs to your project root..."
-ln -sf "$HUB_DIR/rules" ./rules
-ln -sf "$HUB_DIR/docs" ./docs
+install_core() {
+  TARGET_DIR="$(pwd)"
+  if [ "$HUB_DIR" != "$TARGET_DIR" ]; then
+    echo "📦 Copying core rules and docs to your project root..."
+    cp -rf "$HUB_DIR/rules" ./rules
+    cp -rf "$HUB_DIR/docs" ./docs
+  else
+    echo "ℹ️ Running inside ai-context-hub repo root, skipping core rules/docs copy to self."
+  fi
+}
 
-# 2. Link tool-specific adapters
+install_antigravity() {
+  echo "🤖 Configuring Antigravity..."
+  mkdir -p .agents/skills
+  # Clean up old incorrectly nested directory if it exists
+  rm -rf .agents/skills/ai-context-hub
+  
+  # Copy individual skills directly into .agents/skills/
+  for skill in "$HUB_DIR"/adapters/antigravity/skills/*; do
+    if [ -d "$skill" ]; then
+      cp -rf "$skill" .agents/skills/
+    fi
+  done
+
+  if [ -f "$HUB_DIR/adapters/antigravity/AGENTS.md" ]; then
+    cp -f "$HUB_DIR/adapters/antigravity/AGENTS.md" .agents/AGENTS.md
+  fi
+  echo "✅ Antigravity configured successfully!"
+}
+
+install_cursor() {
+  echo "💻 Configuring Cursor..."
+  mkdir -p .cursor/rules
+  for file in "$HUB_DIR"/adapters/cursor/rules/*.mdc; do
+    if [ -f "$file" ]; then
+      cp -f "$file" .cursor/rules/
+    fi
+  done
+  echo "✅ Cursor configured successfully!"
+}
+
+install_claude() {
+  echo "💬 Configuring Claude Code..."
+  if [ -f "$HUB_DIR/adapters/claude-code/CLAUDE.md" ]; then
+    cp -f "$HUB_DIR/adapters/claude-code/CLAUDE.md" ./CLAUDE.md
+  fi
+  echo "✅ Claude Code configured successfully!"
+}
+
+install_core
+
 case "$TOOL" in
   antigravity)
-    echo "🤖 Configuring Antigravity..."
-    mkdir -p .agents/skills
-    ln -sf "$HUB_DIR/adapters/antigravity/skills" .agents/skills/ai-context-hub
-    cp -f "$HUB_DIR/adapters/antigravity/AGENTS.md" .agents/AGENTS.md
-    echo "✅ Antigravity configured successfully!"
+    install_antigravity
     ;;
   
   cursor)
-    echo "💻 Configuring Cursor..."
-    mkdir -p .cursor/rules
-    # Create symlinks for all .mdc files
-    for file in "$HUB_DIR"/adapters/cursor/rules/*.mdc; do
-      if [ -f "$file" ]; then
-        ln -sf "$file" .cursor/rules/
-      fi
-    done
-    echo "✅ Cursor configured successfully!"
+    install_cursor
     ;;
 
   claude)
-    echo "💬 Configuring Claude Code..."
-    ln -sf "$HUB_DIR/adapters/claude-code/CLAUDE.md" ./CLAUDE.md
-    echo "✅ Claude Code configured successfully!"
+    install_claude
     ;;
 
   all)
-    echo "🤖 Configuring Antigravity..."
-    mkdir -p .agents/skills
-    ln -sf "$HUB_DIR/adapters/antigravity/skills" .agents/skills/ai-context-hub
-    cp -f "$HUB_DIR/adapters/antigravity/AGENTS.md" .agents/AGENTS.md
-
-    echo "💻 Configuring Cursor..."
-    mkdir -p .cursor/rules
-    for file in "$HUB_DIR"/adapters/cursor/rules/*.mdc; do
-      if [ -f "$file" ]; then
-        ln -sf "$file" .cursor/rules/
-      fi
-    done
-
-    echo "💬 Configuring Claude Code..."
-    ln -sf "$HUB_DIR/adapters/claude-code/CLAUDE.md" ./CLAUDE.md
-    
-    echo "✅ All adapters configured successfully!"
+    install_antigravity
+    install_cursor
+    install_claude
+    echo "🎉 All adapters installed successfully!"
     ;;
 
   *)
@@ -87,3 +106,4 @@ case "$TOOL" in
     exit 1
     ;;
 esac
+
