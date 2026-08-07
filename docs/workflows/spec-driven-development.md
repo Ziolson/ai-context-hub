@@ -58,15 +58,26 @@ Every `spec.md` includes a `Status` field in its frontmatter that tracks progres
 
 ## Step 1 — Discover Requirements
 
-> **Mode**: Collaborative conversation
+> **Mode**: Collaborative conversation  
 > **Goal**: Build a complete understanding of what needs to be built, for whom, and why
 
 This is an interactive, open-ended conversation between the AI and the user. The conversation continues until the user decides there is enough context to write a specification.
 
-### How the AI Should Behave
+> [!IMPORTANT]
+> ### Critical Rule — Persistent Repository Documentation & Discovery Lock
+> During Step 1 (Discover Requirements), the AI MUST NOT generate persistent specification (`spec.md`), Architecture Decision Record (`ADR`), or implementation plan (`plan.md`) files until initial requirements are gathered.
+> All persistent feature documentation MUST follow the per-feature structure directly in the repository:
+> - `docs/features/<feature-name>/spec.md` (Phase 1)
+> - `docs/features/<feature-name>/plan.md` (Phase 2)
+> 
+> Temporary session scratchpads, editor memory context, or system-level scratch files are NOT substitutes for committed repository documentation.
 
-**Every question must come with a recommendation or suggestion.** The AI must NEVER just ask bare questions. Every question should be accompanied by:
+### How the AI Should Behave & Requirement Discovery Format
 
+1. **Structured Questions**: Questions MUST be organized into logical, thematic blocks (e.g., Block 1: Data Model, Block 2: UX/Offline, Block 3: Tech Stack).
+2. **Mandatory Recommendations**: EVERY question MUST include a concrete AI recommendation with a clear rationale. Bare questions without recommendations are strictly forbidden.
+
+Every question should be accompanied by:
 - A suggested answer based on analysis of the existing codebase
 - A recommendation based on industry best practices
 - An inference based on the user's previous decisions and patterns

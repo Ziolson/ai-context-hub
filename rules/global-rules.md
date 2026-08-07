@@ -7,10 +7,31 @@
 
 ## 1. Workflow Principles
 
-- **Spec-Driven Development**: Always follow the sequence: **understand → specify → approve → implement**. Never jump to coding without understanding what needs to be built and why.
+### 1.1 Project Lifecycle Router
+The AI MUST inspect the state of the repository before selecting the primary workflow:
+
+- **New Project / Fresh Repository (Zero-to-One)**:
+  1. **Phase 0 — Product Discovery**: Conduct an interactive Q&A discovery session to define high-level product vision, business goals, and MVP scope.
+  2. **Phase 1 — Project Bootstrap**: Execute `docs/workflows/project-bootstrap.md` to scaffold the codebase, setup tooling/linter/tests, and write `ADR-001: Initial Architecture`.
+  3. **Phase 2 — Spec-Driven Development**: Once the project foundation is bootstrapped, proceed to specify individual features (`docs/features/<feature>/spec.md`).
+  *Do NOT jump straight to writing feature specs (`spec.md`) or implementing code without completing Phase 0 & 1 for a new project.*
+
+- **Existing / Bootstrapped Project (Feature & Bug Development)**:
+  - Follow **Spec-Driven Development**: Always follow the sequence **understand → specify → approve → implement**. Never jump to coding without understanding what needs to be built and why.
+
+### 1.2 Core Execution Rules
 - **Pragmatic Testing (Value-Driven Testing)**: Use tests where they provide real value (business logic, complex algorithms, critical paths). Avoid enforcing rigid TDD and writing tests for minor tweaks, simple one-liners, or purely structural code without business logic. Aim for stability and confidence, not 100% code coverage at all costs. Write a proper unit test (not just an assert) when the logic has **multiple branches**, **external dependencies** (DB, API, filesystem), or is part of a **shared/reused module**. In all other cases, a single runnable check is sufficient.
 - **No coding without clarity**: Never start writing code without a clear understanding of the requirements. If the requirements are ambiguous, ask for clarification first.
 - **Plan before you act**: Present a plan for approval before making significant changes. "Significant" means anything that touches more than one file, changes an API contract, modifies data models, or alters architecture.
+
+### 1.5 Mandatory Workflow Alignment & Phase Gates
+Before executing a non-trivial task, feature request, or project setup, the AI MUST:
+1. Locate and read the applicable workflow guide in `docs/workflows/` (or `.agents/docs/workflows/` or `.agents/skills/`).
+2. Complete the discovery and specification phase before moving to implementation.
+
+### 1.6 Phase Transition Checkpoints
+The AI MUST NOT transition between workflow phases (e.g., from Requirements Discovery to Writing Spec, or from Approved Spec to Implementation Plan & Coding) without presenting a summary checkpoint and receiving explicit user approval to proceed.
+
 
 
 ## 2. Code Quality Fundamentals
@@ -54,7 +75,9 @@
 
 ## 6. Communication & Formatting
 
-- **Language**: Write all code, comments, documentation, commit messages, and technical communication in **English**.
+### 6.1 Language Distinction (Chat Previews vs. Repository Files)
+- **Chat & Conversational Previews**: Explanations, chat responses, and temporary UI previews presented during conversation MAY be written in the user's preferred conversational language (e.g., Polish).
+- **Repository Files**: ALL persistent files created inside the workspace repository — including `docs/features/<feature-name>/spec.md`, `plan.md`, `ADR-xxx.md`, source code, comments, commit messages, and README files — MUST strictly be written in **English**.
 - **Conventional Commits**: Use the [Conventional Commits](https://www.conventionalcommits.org/) format for all commit messages:
   - `feat:` — New feature
   - `fix:` — Bug fix
