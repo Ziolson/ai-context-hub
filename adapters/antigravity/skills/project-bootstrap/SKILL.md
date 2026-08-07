@@ -1,9 +1,9 @@
 ---
 name: project-bootstrap
 description: >
-  New project setup workflow. Activate when the user wants to create a new
-  project from scratch — guides through initial scaffolding, configuration,
-  and documentation setup.
+  New project setup & product discovery workflow. Activate FIRST when the user
+  wants to create a new project from scratch, plan a new product/idea from scratch,
+  or setup initial scaffolding, tooling, and ADR-001 architecture documentation.
 ---
 
 # Project Bootstrap

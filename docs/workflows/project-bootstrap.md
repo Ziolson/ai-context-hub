@@ -20,15 +20,16 @@
 
 ---
 
-## Step 1 — Requirements Gathering
+## Step 1 — Product Discovery & Requirements Gathering (Sesja Planistyczna)
 
-> **Mode**: Collaborative conversation with recommendations
-> **Goal**: Understand what we're building, for whom, and with what constraints
+> **Mode**: Collaborative interactive Q&A discovery session with AI recommendations
+> **Goal**: Help the user clarify the product vision, define MVP scope, and select the technology stack — even when the user starts with only an abstract idea or problem statement.
 
 ### What to Discover
 
 | Area | Key Questions | AI Should Recommend |
 |------|--------------|---------------------|
+| **Product Vision & Goals** | What problem are we solving? Who are the users? What is the core MVP? | 1-2 core value propositions and initial MVP feature boundary |
 | **Project type** | Web app? API? CLI? Library? Mobile? | Based on the user's description and use case |
 | **Language & framework** | What technology stack? | Based on project type, team expertise, ecosystem maturity |
 | **Architecture** | Monolith? Microservices? Serverless? | Based on expected scale, team size, deployment target |
@@ -36,23 +37,18 @@
 | **Authentication** | Needed? What type? | Based on whether the app has users |
 | **Deployment target** | Cloud? On-prem? Container? | Based on project type and user's infrastructure |
 | **CI/CD** | GitHub Actions? GitLab CI? Jenkins? | Based on hosting platform and team conventions |
-| **Team conventions** | Existing style guides? Mono-repo? | Based on user's other projects if visible |
 
 ### How to Conduct the Conversation
 
-Follow the same principles as Phase 1 — Spec-Driven Development:
+- **Structured Thematic Blocks**: Group questions logically (Block 1: Product Vision & MVP Scope, Block 2: Tech Stack & Database, Block 3: Tooling & Infra).
+- **Every question MUST include a concrete AI recommendation** with clear rationale. Never ask bare questions without options.
+- **Support Vague Ideas**: If the user says *"I'm not sure yet"*, provide 2-3 concrete options/scenarios with pros and cons, or suggest a standard fast-track baseline.
+- **Phase Gate & User Approval**: Summarize the findings of Step 1 and obtain explicit approval before generating files.
 
-- **Every question comes with a recommendation** based on best practices and context
-- The user can accept, modify, or reject each recommendation
-- For simple projects, offer a fast-track: "For a typical [type] project, I'd suggest [stack]. Want to go with this or customize?"
+### Deliverables from Step 1
 
-### Deliverable
-
-A clear understanding of:
-- Technology stack (language, framework, database, key libraries)
-- Project structure preferences
-- Development environment requirements
-- Quality and deployment standards
+1. **High-Level Product Vision**: MVP scope definition (feeds directly into the first Spec-Driven Dev feature after bootstrap).
+2. **Technical Architecture Choices**: Stack, structure, database, and tooling (feeds directly into Step 2 Scaffold and `ADR-001`).
 
 ---
 
