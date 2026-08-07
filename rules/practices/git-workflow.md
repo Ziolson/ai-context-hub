@@ -42,7 +42,7 @@ Rules:
 
 Additional rules beyond the commit message format:
 
-- **Atomic commits**: One logical change per commit. If you need to use "and" to describe what a commit does, split it.
+- **Atomic commits**: Each commit must represent one cohesive, deliverable stage of work that leaves the repository in a consistent, working state. The test: would `git revert <hash>` undo a meaningful unit of work without breaking surrounding functionality? If yes — the commit is well-scoped. Split commits when changes are *unrelated*, not just when they are *multiple*.
 - **No `WIP` commits on `main`**: Squash work-in-progress commits before merging
 - **No commented-out code**: Delete it — Git history preserves it if needed
 - **No debugging artifacts**: Remove `console.log`, `print`, `debugger`, `TODO: remove this` before committing
