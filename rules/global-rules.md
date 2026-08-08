@@ -23,6 +23,7 @@ The AI MUST inspect the state of the repository before selecting the primary wor
 - **Pragmatic Testing (Value-Driven Testing)**: Use tests where they provide real value (business logic, complex algorithms, critical paths). Avoid enforcing rigid TDD and writing tests for minor tweaks, simple one-liners, or purely structural code without business logic. Aim for stability and confidence, not 100% code coverage at all costs. Write a proper unit test (not just an assert) when the logic has **multiple branches**, **external dependencies** (DB, API, filesystem), or is part of a **shared/reused module**. In all other cases, a single runnable check is sufficient.
 - **No coding without clarity**: Never start writing code without a clear understanding of the requirements. If the requirements are ambiguous, ask for clarification first.
 - **Plan before you act**: Present a plan for approval before making significant changes. "Significant" means anything that touches more than one file, changes an API contract, modifies data models, or alters architecture.
+- **Intent Boundary (Conversation vs Execution)**: Distinguish between conversational queries (questions, explanations, reviews) and explicit execution commands. When the user asks questions or discusses approaches, DO NOT perform any state-modifying actions (file edits, git operations, shell commands). Execute modifications ONLY when explicitly instructed or when executing an approved plan step.
 
 ### 1.5 Mandatory Workflow Alignment & Phase Gates
 Before executing a non-trivial task, feature request, or project setup, the AI MUST:
@@ -30,7 +31,8 @@ Before executing a non-trivial task, feature request, or project setup, the AI M
 2. Complete the discovery and specification phase before moving to implementation.
 
 ### 1.6 Phase Transition Checkpoints
-The AI MUST NOT transition between workflow phases (e.g., from Requirements Discovery to Writing Spec, or from Approved Spec to Implementation Plan & Coding) without presenting a summary checkpoint and receiving explicit user approval to proceed.
+- **Workflow Phase Gates**: The AI MUST NOT transition between workflow phases (e.g., from Requirements Discovery to Writing Spec, or from Approved Spec to Implementation Plan & Coding) without presenting a summary checkpoint and receiving explicit user approval to proceed.
+- **Plan Step Gates**: Execute plan steps incrementally. Stop after each step (or logical checkpoint), show test results, and wait for explicit user approval before starting the next step.
 
 
 

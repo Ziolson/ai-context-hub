@@ -79,6 +79,7 @@ Test:
 - The test MUST fail before you write implementation code
 - The test MUST fail for the RIGHT reason (not due to syntax errors or missing imports)
 - Run the test and confirm it fails — do not skip this step
+- **Strict Separation**: NEVER write implementation code and test code in the same step. You MUST execute the failing test via terminal and inspect failure output before writing production code.
 
 ### 🟢 Green — Write Minimum Code to Pass
 
