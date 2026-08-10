@@ -1,13 +1,13 @@
-# Phase 1 — Spec-Driven Development
+# Spec-Driven Development (SDD)
 
-> **Discovery & Specification Workflow**
-> Collaborative process to go from a vague idea to an approved, actionable specification.
+> The universal process for all non-trivial feature and bug work.
+> Every change follows the same cycle: **discover → specify → approve → plan & implement → review**
 
 ---
 
-## Purpose & Trigger
+## When to Use SDD
 
-**Activate this workflow when the user wants to:**
+**Activate SDD when the user wants to:**
 
 - Add a new feature or capability
 - Create or modify an API endpoint
@@ -15,26 +15,54 @@
 - Build a new component or module
 - Make any significant change that affects behavior, contracts, or structure
 
-**This workflow is NOT needed for:**
+**SDD is NOT needed for:**
 
 - Simple bug fixes with obvious solutions
 - Typo corrections or formatting changes
 - Dependency updates with no behavioral change
 
-## What This Workflow Produces
+---
 
-| Artifact | Path | Description |
-|----------|------|-------------|
-| Feature Spec | `docs/features/<feature-name>/spec.md` | Complete specification document |
-| ADRs (optional) | `docs/features/<feature-name>/ADR-NNN-<title>.md` | Architectural Decision Records |
+## The SDD Cycle
 
-### Per-Feature Documentation Structure
+| Phase | Workflow | File | Required? |
+|-------|----------|------|-----------|
+| **Phase 1** | Discovery & Specification | [`discovery.md`](./discovery.md) | ✅ Yes |
+| **Phase 2** | Implementation Planning | [`implementation-plan.md`](./implementation-plan.md) | ⚡ Optional |
+| **Phase 3** | TDD Implementation | [`test-driven-development.md`](./test-driven-development.md) | ✅ Yes |
+| **Phase 4** | Code Review | [`code-review.md`](./code-review.md) | ✅ Yes |
+
+```
+Phase 1: Discovery & Specification
+  discover → specify → approve
+  ↓ spec.md Status: Approved
+Phase 2: Implementation Planning (optional — skip for simple features)
+  analyze → plan → review plan
+  ↓ plan.md approved (or skipped)
+Phase 3: TDD Implementation
+  Red-Green-Refactor per acceptance criterion
+  ↓ all acceptance criteria pass
+Phase 4: Code Review
+  systematic review → feedback → fix/approve
+  ↓ review approved, spec Status: Done
+```
+
+> [!IMPORTANT]
+> ### Mandatory Rules
+> - **Phase 2 is the only optional phase.** Skip it only for simple features where the path from spec to code is obvious. When in doubt, ask the user.
+> - **Phase 3 (TDD) is mandatory.** Every acceptance criterion MUST have a failing test before implementation begins. Code-level unit tests follow pragmatic testing principles — write them for complex logic, skip for trivial one-liners. See [`test-driven-development.md`](./test-driven-development.md) for the full Red-Green-Refactor workflow.
+> - **Phase 4 (Code Review) is mandatory.** Every implementation must be reviewed against the spec before the feature is considered done.
+> - **Never skip phases silently.** If you believe a phase can be skipped, ask the user explicitly.
+
+---
+
+## Per-Feature Documentation Structure
 
 Every feature gets its own folder under `docs/features/`:
 
 ```
 docs/features/<feature-name>/
-├── spec.md                    # Feature specification (this workflow)
+├── spec.md                    # Feature specification (Phase 1)
 ├── plan.md                    # Implementation plan (Phase 2)
 ├── review.md                  # Code review results (Phase 4)
 └── ADR-NNN-<title>.md         # Architectural decisions (as needed)
@@ -42,215 +70,16 @@ docs/features/<feature-name>/
 
 **Naming convention**: Use lowercase kebab-case for `<feature-name>` (e.g., `user-authentication`, `payment-processing`, `csv-export`).
 
-### Spec Status Tracking
-
-Every `spec.md` includes a `Status` field in its frontmatter that tracks progress:
-
-| Status | Meaning |
-|--------|---------|
-| `Draft` | Spec is being written or refined — not ready for implementation |
-| `Approved` | Spec has been reviewed and explicitly approved by the user |
-| `In Progress` | Implementation has started (Phase 2 or Phase 3 active) |
-| `Done` | All acceptance criteria pass, code review complete |
-| `Deprecated` | Feature was abandoned, superseded, or rolled back |
-
 ---
 
-## Step 1 — Discover Requirements
+## Spec Status Tracking
 
-> **Mode**: Collaborative conversation  
-> **Goal**: Build a complete understanding of what needs to be built, for whom, and why
+Every `spec.md` includes a `Status` field that tracks progress through the SDD cycle:
 
-This is an interactive, open-ended conversation between the AI and the user. The conversation continues until the user decides there is enough context to write a specification.
-
-> [!IMPORTANT]
-> ### Critical Rule — Persistent Repository Documentation & Discovery Lock
-> During Step 1 (Discover Requirements), the AI MUST NOT generate persistent specification (`spec.md`), Architecture Decision Record (`ADR`), or implementation plan (`plan.md`) files until initial requirements are gathered.
-> All persistent feature documentation MUST follow the per-feature structure directly in the repository:
-> - `docs/features/<feature-name>/spec.md` (Phase 1)
-> - `docs/features/<feature-name>/plan.md` (Phase 2)
-> 
-> Temporary session scratchpads, editor memory context, or system-level scratch files are NOT substitutes for committed repository documentation.
-
-### How the AI Should Behave & Requirement Discovery Format
-
-1. **Structured Questions**: Questions MUST be organized into logical, thematic blocks (e.g., Block 1: Data Model, Block 2: UX/Offline, Block 3: Tech Stack).
-2. **Mandatory Recommendations**: EVERY question MUST include a concrete AI recommendation with a clear rationale. Bare questions without recommendations are strictly forbidden.
-
-Every question should be accompanied by:
-- A suggested answer based on analysis of the existing codebase
-- A recommendation based on industry best practices
-- An inference based on the user's previous decisions and patterns
-
-The user can then **accept**, **modify**, or **reject** each recommendation.
-
-#### Example — Good ✅
-
-> "For the authentication system, should we support OAuth2, API keys, or both?
->
-> **My recommendation**: Based on your existing REST API structure and the fact that you already have a `User` model with email/password, I'd suggest starting with **JWT-based authentication** with email/password login, and adding OAuth2 as a follow-up feature. This keeps the initial scope manageable while setting up the token infrastructure you'll need for OAuth2 later.
->
-> Want to go with this approach, or do you have different requirements?"
-
-#### Example — Bad ❌
-
-> "What authentication method should we use?"
-
-### Focus Areas During Discovery
-
-| Area | Key Questions |
-|------|--------------|
-| **Users & Actors** | Who uses this feature? What are their roles and permissions? |
-| **Core Behavior** | What is the happy path? What does success look like? |
-| **Edge Cases** | What happens when inputs are invalid, missing, or unexpected? |
-| **Affected Components** | Which existing files, modules, or services will be touched? |
-| **Constraints** | Performance requirements? Compatibility needs? Deadlines? |
-| **Dependencies** | Does this depend on or block other features? |
-| **Out of Scope** | What are we explicitly NOT building right now? |
-
-### AI Proactive Responsibilities
-
-- **Identify issues early**: If the user's request conflicts with the existing architecture, say so immediately.
-- **Surface trade-offs**: When there are multiple valid approaches, present the trade-offs clearly.
-- **Analyze the codebase**: Before asking questions, examine the existing code to understand current patterns, conventions, and constraints.
-- **Reference previous decisions**: If similar decisions were made before (in ADRs or other specs), reference them.
-
-### Fast-Track for Simple Requests
-
-For straightforward requests where the requirements are obvious:
-
-> "This seems straightforward — I'd suggest [approach with brief rationale]. Want me to proceed directly to the spec, or would you like to discuss further?"
-
-The user can accept the fast-track or opt for full discovery.
-
----
-
-## Step 2 — Write Specification
-
-> **Goal**: Produce a complete, unambiguous spec document that can drive implementation and testing
-
-### Actions
-
-1. **Create the feature folder**: `docs/features/<feature-name>/`
-2. **Create `spec.md`** using the standard spec template (see below)
-3. **Set Status**: `Draft`
-4. **Create ADRs** if any architectural decisions were made during discovery
-
-### Spec Template
-
-```markdown
-# Feature: <Feature Name>
-
-| Field       | Value            |
-|-------------|------------------|
-| Status      | Draft            |
-| Author      | <name>           |
-| Created     | <YYYY-MM-DD>     |
-| Updated     | <YYYY-MM-DD>     |
-
-## Problem Statement
-
-What problem are we solving? Why does it matter? Who is affected?
-
-## Proposed Solution
-
-High-level description of the approach. What will be built and how will it work?
-
-## User Stories
-
-- As a [role], I want [capability] so that [benefit].
-- As a [role], I want [capability] so that [benefit].
-
-## Acceptance Criteria
-
-### AC-1: <Criteria Title>
-- **Given** <precondition>
-- **When** <action>
-- **Then** <expected result>
-
-### AC-2: <Criteria Title>
-- **Given** <precondition>
-- **When** <action>
-- **Then** <expected result>
-
-## API Contract
-
-### `METHOD /path`
-
-**Request**:
-\```json
-{
-  "field": "type — description"
-}
-\```
-
-**Response (success)**:
-\```json
-{
-  "field": "type — description"
-}
-\```
-
-**Response (error)**:
-\```json
-{
-  "error": "string — error message"
-}
-\```
-
-## Data Model Changes
-
-Describe any new tables, columns, indexes, or schema modifications.
-
-## Error Scenarios
-
-| Scenario | Expected Behavior | HTTP Status |
-|----------|-------------------|-------------|
-| Invalid input | Return validation error | 400 |
-| Not found | Return not found error | 404 |
-
-## Non-Functional Requirements
-
-- **Performance**: <requirements>
-- **Security**: <requirements>
-- **Scalability**: <requirements>
-
-## Out of Scope
-
-List what is explicitly NOT included in this feature.
-
-## Open Questions
-
-List any unresolved questions (should be empty before Approved status).
-```
-
----
-
-## Step 3 — Review & Approve
-
-> **Goal**: Get explicit user approval before any implementation begins
-
-### Process
-
-1. **Present the spec**: Share the complete `spec.md` with the user
-2. **Solicit feedback**: Ask the user to review each section
-3. **Iterate**: Update the spec based on feedback — this may require multiple rounds
-4. **Get explicit approval**: The user must explicitly say the spec is approved. Look for phrases like "approved", "looks good, proceed", "LGTM", etc.
-5. **Update Status**: Change Status from `Draft` to `Approved`
-
-### Critical Rule
-
-> ⚠️ **Do NOT proceed to implementation without explicit approval.**
-> A spec in `Draft` status must never be used as input for Phase 2 or Phase 3.
-> If the user seems to want to skip approval, remind them: "I want to make sure we're aligned before writing code. Could you confirm the spec looks good?"
-
----
-
-## Handoff
-
-Once the spec Status is `Approved`, this workflow is complete. The approved spec becomes the input for:
-
-- **Phase 2 — Implementation Planning** (`docs/workflows/implementation-plan.md`): For complex features that need a detailed plan
-- **Phase 3 — TDD Implementation** (`docs/workflows/test-driven-development.md`): For features ready to implement directly
-
-The user decides which phase to enter next.
+| Status | Meaning | Active Phase |
+|--------|---------|-------------|
+| `Draft` | Spec is being written or refined | Phase 1 |
+| `Approved` | Spec reviewed and approved by user | Phase 1 complete |
+| `In Progress` | Implementation has started | Phase 2 or 3 |
+| `Done` | All acceptance criteria pass, code review complete | Phase 4 complete |
+| `Deprecated` | Feature abandoned, superseded, or rolled back | — |

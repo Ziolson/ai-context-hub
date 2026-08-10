@@ -1,7 +1,7 @@
-# Phase 3 — Test-Driven Development
+# Phase 3 — TDD Implementation
 
-> **From Spec to Working Code**
-> Implement functionality using the Red-Green-Refactor cycle at two levels: feature-level and code-level.
+> Part of the **Spec-Driven Development** cycle — see [`spec-driven-development.md`](./spec-driven-development.md) for the full process definition.
+> This phase covers: implementing functionality using the Red-Green-Refactor cycle, driven by the approved spec.
 
 ---
 

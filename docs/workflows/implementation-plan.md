@@ -1,7 +1,7 @@
 # Phase 2 — Implementation Planning
 
-> **From Approved Spec to Actionable Plan**
-> Analyze the codebase and the specification to produce a detailed, ordered implementation plan.
+> Part of the **Spec-Driven Development** cycle — see [`spec-driven-development.md`](./spec-driven-development.md) for the full process definition.
+> This phase covers: analyzing the approved spec and producing an ordered, testable implementation plan.
 
 ---
 
@@ -26,7 +26,7 @@
 
 ### Prerequisite
 
-The spec must have Status `Approved`. If the spec is still `Draft`, redirect to Phase 1 (Spec-Driven Development) first.
+The spec must have Status `Approved`. If the spec is still `Draft`, redirect to Phase 1 — Discovery & Specification ([`discovery.md`](./discovery.md)) first.
 
 ---
 

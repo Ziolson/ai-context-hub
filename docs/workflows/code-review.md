@@ -1,7 +1,7 @@
 # Phase 4 — Code Review
 
-> **Quality Gate Before Commit**
-> Systematic review of code changes against the specification, project standards, and best practices.
+> Part of the **Spec-Driven Development** cycle — see [`spec-driven-development.md`](./spec-driven-development.md) for the full process definition.
+> This phase covers: systematic review of code changes against the specification, project standards, and best practices.
 
 ---
 
@@ -29,7 +29,7 @@
 
 ---
 
-## Phase 1 — Understanding
+## Step 1 — Understanding
 
 > **Goal**: Build context before reviewing any code
 
@@ -47,7 +47,7 @@ Before looking at a single line of code, read and understand:
 
 ---
 
-## Phase 2 — Systematic Review
+## Step 2 — Systematic Review
 
 > **Goal**: Evaluate code changes against a comprehensive checklist
 
@@ -85,7 +85,7 @@ Review every changed file against the following checklist. For each category, no
 
 ---
 
-## Phase 3 — Feedback
+## Step 3 — Feedback
 
 > **Goal**: Provide clear, actionable, prioritized feedback
 

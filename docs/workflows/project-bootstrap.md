@@ -15,7 +15,7 @@
 
 **This workflow is NOT for:**
 
-- Adding features to an existing project (use Phase 1 — Spec-Driven Development)
+- Adding features to an existing project (use the SDD cycle — see `spec-driven-development.md`)
 - Migrating or refactoring an existing project
 
 ---
@@ -348,7 +348,7 @@ Create `docs/adr/ADR-001-initial-architecture.md`:
 
 After the project is bootstrapped:
 
-1. **Add the first feature**: Use Phase 1 — Spec-Driven Development to specify the first feature
+1. **Add the first feature**: Use the SDD cycle (`spec-driven-development.md`) starting from Phase 1 — Discovery & Specification to specify the first feature
 2. **Plan the implementation**: Use Phase 2 — Implementation Planning if the feature is complex
 3. **Build it with TDD**: Use Phase 3 — TDD Implementation to write the code
 4. **Review before committing**: Use Phase 4 — Code Review to ensure quality

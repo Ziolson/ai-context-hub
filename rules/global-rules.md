@@ -8,19 +8,26 @@
 ## 1. Workflow Principles
 
 ### 1.1 Project Lifecycle Router
-The AI MUST inspect the state of the repository before selecting the primary workflow:
+
+**Spec-Driven Development (SDD) is the universal process** for all feature and bug work — regardless of project maturity. Every non-trivial change follows the same cycle:
+
+> **discover → specify → approve → plan & implement → review**
+
+See `docs/workflows/spec-driven-development.md` for the full process definition.
+
+The AI MUST inspect the repository state to determine the correct **entry point**:
 
 - **New Project / Fresh Repository (Zero-to-One)**:
-  1. **Phase 0 — Product Discovery**: Conduct an interactive Q&A discovery session to define high-level product vision, business goals, and MVP scope.
-  2. **Phase 1 — Project Bootstrap**: Execute `docs/workflows/project-bootstrap.md` to scaffold the codebase, setup tooling/linter/tests, and write `ADR-001: Initial Architecture`.
-  3. **Phase 2 — Spec-Driven Development**: Once the project foundation is bootstrapped, proceed to specify individual features (`docs/features/<feature>/spec.md`).
-  *Do NOT jump straight to writing feature specs (`spec.md`) or implementing code without completing Phase 0 & 1 for a new project.*
+  1. **Project Discovery**: Conduct an interactive Q&A session to define product vision, business goals, MVP scope, tech stack, and high-level architecture. These decisions directly shape the bootstrap — do not skip this step.
+  2. **Project Bootstrap**: Execute `docs/workflows/project-bootstrap.md` to scaffold the codebase, set up tooling/linter/tests, and write `ADR-001: Initial Architecture`.
+  3. **SDD for each feature**: Once bootstrapped, apply SDD starting from the discover phase for each feature.
+  *Do NOT bootstrap or write feature specs without completing Project Discovery first.*
 
 - **Existing / Bootstrapped Project (Feature & Bug Development)**:
-  - Follow **Spec-Driven Development**: Always follow the sequence **understand → specify → approve → implement**. Never jump to coding without understanding what needs to be built and why.
+  - Apply SDD directly — start from the discover phase for each new feature or bug.
 
 ### 1.2 Core Execution Rules
-- **Pragmatic Testing (Value-Driven Testing)**: Use tests where they provide real value (business logic, complex algorithms, critical paths). Avoid enforcing rigid TDD and writing tests for minor tweaks, simple one-liners, or purely structural code without business logic. Aim for stability and confidence, not 100% code coverage at all costs. Write a proper unit test (not just an assert) when the logic has **multiple branches**, **external dependencies** (DB, API, filesystem), or is part of a **shared/reused module**. In all other cases, a single runnable check is sufficient.
+- **Pragmatic Testing (Value-Driven Testing)**: Use tests where they provide real value (business logic, complex algorithms, critical paths). Avoid enforcing rigid TDD and writing tests for minor tweaks, simple one-liners, or purely structural code without business logic. Aim for stability and confidence, not 100% code coverage at all costs. Write a proper unit test (not just an assert) when the logic has **multiple branches**, **external dependencies** (DB, API, filesystem), or is part of a **shared/reused module**. In all other cases, a single runnable check is sufficient. Within an active SDD cycle, follow the testing approach defined in Phase 3 — TDD Implementation.
 - **No coding without clarity**: Never start writing code without a clear understanding of the requirements. If the requirements are ambiguous, ask for clarification first.
 - **Plan before you act**: Present a plan for approval before making significant changes. "Significant" means anything that touches more than one file, changes an API contract, modifies data models, or alters architecture.
 
