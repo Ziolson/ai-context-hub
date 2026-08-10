@@ -82,36 +82,40 @@ Brief overview of what will be implemented and the general approach.
 
 ## Implementation Steps
 
-### Step 1: <Title>
+> [!NOTE]
+> Plan steps should represent complete functional slices (Vertical Slices) based on the Acceptance Criteria (AC) from the spec. Each step implements a given AC end-to-end (from database to API). Avoid layer-by-layer planning (e.g., all database models first, then all business logic).
 
-**Description**: What this step accomplishes and why it comes first.
+### Step 1: Implement AC-1 [Short Title]
+
+**Description**: Technical implementation details for this AC from backend to presentation layer.
 
 **Files to create/modify**:
-- `path/to/file.ext` — Description of changes
-- `path/to/new-file.ext` — New file, purpose
+- `path/to/model.ext` — Data model changes
+- `path/to/service.ext` — Business logic for this AC
+- `path/to/controller.ext` — API endpoint for this AC
 
 **Tests**:
-- `path/to/file.test.ext` — Test descriptions
+- `path/to/file.test.ext` — Target integration/E2E and unit tests for this AC. Test scenarios and edge cases will be verified in code during the TDD Red phase.
 
 **Depends on**: None (or list previous steps)
 
 ---
 
-### Step 2: <Title>
+### Step 2: Implement AC-2 [Short Title]
 
-**Description**: What this step accomplishes.
+**Description**: Technical implementation details.
 
 **Files to create/modify**:
-- `path/to/file.ext` — Description of changes
+- `path/to/file.ext` — Changes
 
 **Tests**:
-- `path/to/file.test.ext` — Test descriptions
+- `path/to/file.test.ext` — Tests for AC-2
 
 **Depends on**: Step 1
 
 ---
 
-(Continue for all steps...)
+(Continue for all steps/ACs...)
 
 ## Risks & Mitigations
 
@@ -126,13 +130,11 @@ Reference the spec's Out of Scope section and add any implementation-specific ex
 
 ### Guidelines for Ordering Steps
 
-1. **Data model first**: Database schemas, migrations, and entity/model definitions
-2. **Core logic second**: Business logic, domain services, and core algorithms
-3. **Integration third**: Repository/DAO implementations, external service clients
-4. **API layer fourth**: Controllers, routes, request/response DTOs, validation
-5. **Cross-cutting last**: Logging, monitoring, caching, authorization policies
+1. **Vertical Slicing**: Organize steps around Acceptance Criteria (AC). Start with foundational, independent ACs, then move to more complex ones that build on them.
+2. **End-to-End Implementation**: Each step should touch all necessary application layers (database, logic, API) required to deliver the functionality described by that AC.
+3. **Do not plan test cases in markdown**: The plan should only specify test file paths. Concrete test scenarios will be verified directly in code during the TDD (Red-Green-Refactor) phase.
 
-Each step should be independently testable. If you can't write a test for a step in isolation, the step is too large — break it down further.
+Each step must be testable via an integration or E2E test according to TDD principles. If a step only creates a database model without any accessible logic to interact with, it is a horizontal (layer-based) step rather than a Vertical Slice. Adjust the approach to be vertical.
 
 ### What Makes a Good Plan
 

@@ -25,13 +25,11 @@ ai-context-hub/
 │   ├── templates/                # Reusable document templates
 │   │   ├── spec-template.md
 │   │   ├── adr-template.md
-│   │   ├── test-plan-template.md
 │   │   └── review-checklist-template.md
 │   └── features/                 # Per-feature documentation
 │       └── <feature-name>/
 │           ├── spec.md
 │           ├── adr-*.md
-│           ├── test-plan.md
 │           └── review.md
 └── adapters/                     # Tool-specific adapter files
     ├── antigravity/              # Google Antigravity / Gemini
@@ -211,7 +209,6 @@ Each feature gets its own documentation directory under `docs/features/`:
 docs/features/user-authentication/
 ├── spec.md                 # Feature specification
 ├── adr-001-jwt-vs-session.md  # Architectural Decision Record
-├── test-plan.md            # Test plan
 └── review.md               # Code review checklist
 ```
 

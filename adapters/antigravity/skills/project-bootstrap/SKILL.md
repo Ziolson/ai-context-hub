@@ -14,7 +14,6 @@ Read and follow the instructions from the following files:
 Use the following templates as needed during setup:
 - `docs/templates/spec-template.md` — Specification template
 - `docs/templates/adr-template.md` — ADR template
-- `docs/templates/test-plan-template.md` — Test plan template
 - `docs/templates/review-checklist-template.md` — Review checklist template
 
 Also apply the global rules from `rules/global-rules.md`.

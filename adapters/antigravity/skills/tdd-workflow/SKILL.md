@@ -10,6 +10,5 @@ description: >
 
 Read and follow the instructions from the following files:
 - `docs/workflows/test-driven-development.md` — Full TDD workflow guide
-- `docs/templates/test-plan-template.md` — Test plan template
 
 Also apply the global rules from `rules/global-rules.md`.

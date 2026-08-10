@@ -35,8 +35,9 @@
 
 ```
 Feature-Level (outer loop):
-  📋 Pick acceptance criterion AC-1 from spec
-  🔴 Write failing integration/E2E test for AC-1
+  📋 Pick step (Vertical Slice) for AC-1 from plan.md (or directly from spec.md)
+  🔴 Write failing integration/E2E test for AC-1 (including edge cases)
+  ⏸️  STOP — show test code & terminal output, wait for user to confirm the test makes sense and fails for the right reason
   │
   │  Code-Level (inner loop):
   │    🔴 Write failing unit test for function/class needed
@@ -51,6 +52,8 @@ Feature-Level (outer loop):
 ```
 
 ---
+
+
 
 ## The Red-Green-Refactor Cycle
 
@@ -79,7 +82,8 @@ Test:
 - The test MUST fail before you write implementation code
 - The test MUST fail for the RIGHT reason (not due to syntax errors or missing imports)
 - Run the test and confirm it fails — do not skip this step
-- **Strict Separation**: NEVER write implementation code and test code in the same step. You MUST execute the failing test via terminal and inspect failure output before writing production code.
+- **Strict Separation & Verification Gate**: NEVER write implementation code and test code in the same step. You MUST execute the failing test via terminal and inspect failure output.
+- **STOP for Review**: After writing the failing test for an AC (which reveals all test scenarios in code), stop execution. Show the test code and terminal failure output to the user so they can confirm that the test scenarios (happy path, edge cases) make sense before proceeding to implementation (Green).
 
 ### 🟢 Green — Write Minimum Code to Pass
 
