@@ -5,69 +5,70 @@ export default defineConfig({
   description: 'Tool-neutral knowledge base of workflow rules and skills for AI-assisted development',
   base: '/ai-context-hub/',
   cleanUrls: true,
+  lastUpdated: true,
+
+  head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🧠</text></svg>' }],
+    ['meta', { name: 'theme-color', content: '#6366f1' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'AI Context Hub' }],
+    ['meta', { property: 'og:description', content: 'Tool-neutral knowledge base of workflow rules and skills for AI-assisted development' }],
+    ['meta', { property: 'og:site_name', content: 'AI Context Hub' }]
+  ],
 
   themeConfig: {
     logo: '🧠',
     siteTitle: 'AI Context Hub',
+    outline: [2, 3],
+    
+    editLink: {
+      pattern: 'https://github.com/Ziolson/ai-context-hub/edit/main/:path',
+      text: 'Edit this page on GitHub'
+    },
     
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Workflows', link: '/docs/workflows/spec-driven-development' },
-      { text: 'Rules & Practices', link: '/rules/global-rules' },
-      { text: 'Templates', link: '/docs/templates/spec-template' },
-      { text: 'Adapters', link: '/adapters/claude-code/' }
+      { text: 'Guides & Architecture', link: '/guide/' },
+      { text: 'SDD Workflows', link: '/guide/spec-driven-development-explained' },
+      { text: 'Best Practices', link: '/guide/global-rules' },
+      { text: 'Tool Adapters', link: '/guide/adapters-and-architecture' }
     ],
 
     sidebar: [
       {
-        text: '🚀 Getting Started',
+        text: '📖 Guides & Architecture',
         items: [
-          { text: 'Overview & Setup', link: '/README' }
+          { text: 'About AI Context Hub', link: '/guide/' },
+          { text: 'Adapters & Architecture', link: '/guide/adapters-and-architecture' }
         ]
       },
       {
-        text: '🔄 Workflows',
+        text: '🔄 Workflow Guides',
         items: [
+          { text: 'Project Bootstrap (Zero-to-One)', link: '/guide/project-bootstrap' },
           {
             text: 'Spec-Driven Development (SDD)',
-            link: '/docs/workflows/spec-driven-development',
+            link: '/guide/spec-driven-development-explained',
             items: [
-              { text: 'Phase 1: Discovery & Spec', link: '/docs/workflows/discovery' },
-              { text: 'Phase 2: Implementation Plan', link: '/docs/workflows/implementation-plan' },
-              { text: 'Phase 3: TDD Implementation', link: '/docs/workflows/test-driven-development' },
-              { text: 'Phase 4: Code Review', link: '/docs/workflows/code-review' }
+              { text: 'Phase 1: Discovery & Specification', link: '/guide/discovery' },
+              { text: 'Phase 2: Implementation Planning', link: '/guide/implementation-plan' },
+              { text: 'Phase 3: TDD Implementation', link: '/guide/test-driven-development' },
+              { text: 'Phase 4: Structured Code Review', link: '/guide/code-review' }
             ]
-          },
-          { text: 'Project Bootstrap', link: '/docs/workflows/project-bootstrap' }
+          }
         ]
       },
       {
-        text: '📏 Rules & Practices',
+        text: '📏 Best Practices Guides',
         items: [
-          { text: 'Global Rules', link: '/rules/global-rules' },
-          { text: 'Backend Practices', link: '/rules/practices/backend' },
-          { text: 'Frontend Practices', link: '/rules/practices/frontend' },
-          { text: 'API Design', link: '/rules/practices/api-design' },
-          { text: 'Database Practices', link: '/rules/practices/database' },
-          { text: 'Git Workflow', link: '/rules/practices/git-workflow' },
-          { text: 'Testing Practices', link: '/rules/practices/testing' },
-          { text: 'Security Practices', link: '/rules/practices/security' }
-        ]
-      },
-      {
-        text: '📄 Templates',
-        items: [
-          { text: 'Specification Template', link: '/docs/templates/spec-template' },
-          { text: 'ADR Template', link: '/docs/templates/adr-template' },
-          { text: 'Code Review Checklist', link: '/docs/templates/review-checklist-template' }
-        ]
-      },
-      {
-        text: '🔌 Adapters',
-        items: [
-          { text: 'Claude Code Adapter', link: '/adapters/claude-code/' },
-          { text: 'Antigravity / Gemini Adapter', link: '/adapters/antigravity/' },
-          { text: 'Cursor IDE Adapter', link: '/adapters/cursor/' }
+          { text: 'Global Rules & Philosophy', link: '/guide/global-rules' },
+          { text: 'Backend Practices', link: '/guide/backend' },
+          { text: 'Frontend Practices', link: '/guide/frontend' },
+          { text: 'API Design', link: '/guide/api-design' },
+          { text: 'Database Practices', link: '/guide/database' },
+          { text: 'Git & Branching Workflow', link: '/guide/git-workflow' },
+          { text: 'Pragmatic Testing', link: '/guide/testing' },
+          { text: 'Security Baseline', link: '/guide/security' }
         ]
       }
     ],

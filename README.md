@@ -77,7 +77,7 @@ npm run docs:dev
 
 ## 🚀 Quick Setup
 
-The easiest way to connect this repository to your project is using the automated `install.sh` script, which automatically creates the necessary symlinks.
+The easiest way to connect this repository to your target project is using the automated `install.sh` script, which installs self-contained adapters into your project's hidden tool directories (`.agents/`, `.cursor/`, or `.claude/`).
 
 ### Option A — Automated Setup (Recommended)
 
@@ -91,7 +91,7 @@ Run the script from your **target project root**, pointing to the cloned `ai-con
 /path/to/ai-context-hub/install.sh all
 ```
 
-*This will automatically symlink the core `rules/` and `docs/` folders, and configure your chosen adapter files.*
+*This automatically copies core rules and workflows self-containedly and configures path pointers for your chosen AI assistant.*
 
 ---
 
@@ -220,7 +220,7 @@ This creates a **living record** of every design decision, making onboarding and
 
 ---
 
-## 🤝 Contributing
+## 🛠️ Maintainer & AI Development Guide
 
 ### Adding a New Workflow
 
