@@ -22,8 +22,6 @@ for file in "$HUB_DIR"/adapters/cursor/rules/*.mdc; do
     filename="$(basename "$file")"
     sed -e 's|@rules/|@.cursor/context/rules/|g' \
         -e 's|@docs/|@.cursor/context/docs/|g' \
-        -e 's|rules/|.cursor/context/rules/|g' \
-        -e 's|docs/|.cursor/context/docs/|g' \
         "$file" > ".cursor/rules/$filename"
   fi
 done

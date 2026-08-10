@@ -17,11 +17,19 @@ mkdir -p .agents/docs
 # Clean up legacy nested directory if present
 rm -rf .agents/skills/ai-context-hub
 
-# 1. Copy skills directly into .agents/skills/
+# 1. Copy skills directly into .agents/skills/ and rewrite paths to point to .agents/
 if [ -d "$HUB_DIR/adapters/antigravity/skills" ]; then
   for skill in "$HUB_DIR"/adapters/antigravity/skills/*; do
     if [ -d "$skill" ]; then
+      skill_name="$(basename "$skill")"
       cp -rf "$skill" .agents/skills/
+      for skill_file in ".agents/skills/$skill_name"/*.md; do
+        if [ -f "$skill_file" ]; then
+          sed -e 's|rules/|.agents/rules/|g' \
+              -e 's|docs/|.agents/docs/|g' \
+              "$skill_file" > "${skill_file}.tmp" && mv "${skill_file}.tmp" "$skill_file"
+        fi
+      done
     fi
   done
 fi
