@@ -29,6 +29,7 @@ export default defineConfig({
         text: '🔄 Workflows',
         items: [
           { text: 'Spec-Driven Development', link: '/docs/workflows/spec-driven-development' },
+          { text: 'Discovery & Specification', link: '/docs/workflows/discovery' },
           { text: 'Implementation Plan', link: '/docs/workflows/implementation-plan' },
           { text: 'Test-Driven Development', link: '/docs/workflows/test-driven-development' },
           { text: 'Code Review', link: '/docs/workflows/code-review' },
@@ -53,7 +54,6 @@ export default defineConfig({
         items: [
           { text: 'Specification Template', link: '/docs/templates/spec-template' },
           { text: 'ADR Template', link: '/docs/templates/adr-template' },
-          { text: 'Test Plan Template', link: '/docs/templates/test-plan-template' },
           { text: 'Code Review Checklist', link: '/docs/templates/review-checklist-template' }
         ]
       },

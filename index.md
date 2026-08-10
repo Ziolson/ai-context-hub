@@ -25,7 +25,7 @@ features:
     details: Native adapter configs for Antigravity/Gemini, Cursor (.mdc), and Claude Code (CLAUDE.md) referencing the single source of truth.
   - icon: 🔄
     title: 4-Phase SDLC
-    details: Spec-Driven Development -> Implementation Planning -> Test-Driven Development -> Structured Code Review.
+    details: Discovery & Specification -> Implementation Planning -> Test-Driven Development -> Structured Code Review.
   - icon: 📦
     title: Automated Setup
     details: Simple install.sh script to symlink rules and docs directly into your project root.
@@ -56,8 +56,8 @@ git clone https://github.com/Ziolson/ai-context-hub.git
 └─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
 ```
 
-1. **[Spec-Driven Development](/docs/workflows/spec-driven-development)**: Define clear requirements and constraints before generating code.
-2. **[Implementation Plan](/docs/workflows/implementation-plan)**: Break specs into actionable, milestone-based implementation steps.
+1. **[Discovery & Specification](/docs/workflows/discovery)**: Collaborative requirements discovery and writing an approved feature spec (`spec.md`).
+2. **[Implementation Plan](/docs/workflows/implementation-plan)**: Break approved specs into actionable, milestone-based implementation steps.
 3. **[Test-Driven Development](/docs/workflows/test-driven-development)**: Red -> Green -> Refactor cycle to maintain quality and avoid regressions.
 4. **[Structured Code Review](/docs/workflows/code-review)**: Rigorous checklist evaluating correctness, security, performance, and maintainability.
 

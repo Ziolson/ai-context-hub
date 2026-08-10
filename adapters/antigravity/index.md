@@ -9,6 +9,7 @@ The Antigravity adapter integrates **AI Context Hub** with [Google Antigravity](
 | Component | Path | Description |
 |-----------|------|-------------|
 | **Global Rules** | `AGENTS.md` | Core instructions pointing to `rules/global-rules.md` |
+| **Discovery Skill** | `skills/discovery/SKILL.md` | Requirements discovery and specification workflow |
 | **Spec-Driven Dev Skill** | `skills/spec-driven-dev/SKILL.md` | Guided feature specification workflow |
 | **Implementation Plan Skill** | `skills/implementation-plan/SKILL.md` | Step-by-step task breakdown workflow |
 | **TDD Workflow Skill** | `skills/tdd-workflow/SKILL.md` | Red-Green-Refactor test-driven workflow |

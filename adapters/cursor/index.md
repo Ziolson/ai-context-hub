@@ -16,6 +16,11 @@ Each rule file references the core single-source-of-truth documentation using Cu
 | `test-driven-development.mdc` | Triggered when implementing code via TDD | `@docs/workflows/test-driven-development.md` |
 | `code-review.mdc` | Triggered during code reviews | `@docs/workflows/code-review.md` |
 | `project-bootstrap.mdc` | Triggered when setting up new projects | `@docs/workflows/project-bootstrap.md` |
+| `api-design.mdc` | Triggered for REST/GraphQL API design | `@rules/practices/api-design.md` |
+| `backend.mdc` | Triggered for backend logic & architecture | `@rules/practices/backend.md` |
+| `database.mdc` | Triggered for SQL/NoSQL database queries & schema | `@rules/practices/database.md` |
+| `frontend.mdc` | Triggered for UI/CSS & frontend development | `@rules/practices/frontend.md` |
+| `git-workflow.mdc` | Triggered for git commits & branch management | `@rules/practices/git-workflow.md` |
 
 ---
 

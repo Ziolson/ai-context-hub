@@ -18,6 +18,7 @@ ai-context-hub/
 ├── docs/
 │   ├── workflows/                # Step-by-step workflow guides
 │   │   ├── spec-driven-development.md
+│   │   ├── discovery.md
 │   │   ├── implementation-plan.md
 │   │   ├── test-driven-development.md
 │   │   ├── code-review.md
@@ -43,7 +44,7 @@ ai-context-hub/
 |-----------|---------|
 | `rules/` | Global rules that apply to **every** AI interaction — coding standards, naming conventions, error handling policies |
 | `docs/workflows/` | Step-by-step workflow guides for each phase of development |
-| `docs/templates/` | Reusable templates for specifications, ADRs, test plans, and reviews |
+| `docs/templates/` | Reusable templates for specifications, ADRs, and reviews |
 | `docs/features/` | Per-feature documentation generated during development |
 
 ### Adapters (tool-specific)
@@ -52,8 +53,8 @@ Adapters are thin configuration files that **reference** the core docs — they 
 
 | Adapter | Format | Files |
 |---------|--------|-------|
-| **Antigravity / Gemini** | `AGENTS.md` + `SKILL.md` | Global rules + 5 skills |
-| **Cursor** | `.mdc` rules | 6 rule files with `@file` references |
+| **Antigravity / Gemini** | `AGENTS.md` + `SKILL.md` | Global rules + 6 skills |
+| **Cursor** | `.mdc` rules | 11 rule files with `@file` references |
 | **Claude Code** | `CLAUDE.md` | Single file referencing all docs |
 
 ---
@@ -171,7 +172,7 @@ AI Context Hub enforces a **4-phase development workflow** that ensures every fe
 
 ### Phase 1: Discovery → Specification
 
-**Workflow:** `spec-driven-development`
+**Workflow:** `discovery` (or hub `spec-driven-development`)
 
 Before writing any code, create a specification. The AI guides you through:
 1. **Discover** — Analyze requirements, explore the codebase, identify constraints
