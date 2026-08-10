@@ -47,18 +47,20 @@ git clone https://github.com/Ziolson/ai-context-hub.git
 
 ---
 
-## 📊 The 4-Phase AI Development Workflow
+## 📊 Spec-Driven Development (SDD) Workflow
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Discovery  │────▶│    Plan     │────▶│  Implement  │────▶│   Review    │
-│ Spec-Driven │     │ Impl Plan   │     │ TDD Cycle   │     │ Code Review │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│ Phase 1:         │────▶│ Phase 2:         │────▶│ Phase 3:         │────▶│ Phase 4:         │
+│ Discovery & Spec │     │ Impl Plan        │     │ TDD Cycle        │     │ Code Review      │
+└──────────────────┘     └──────────────────┘     └──────────────────┘     └──────────────────┘
 ```
 
-1. **[Discovery & Specification](/docs/workflows/discovery)**: Collaborative requirements discovery and writing an approved feature spec (`spec.md`).
-2. **[Implementation Plan](/docs/workflows/implementation-plan)**: Break approved specs into actionable, milestone-based implementation steps.
-3. **[Test-Driven Development](/docs/workflows/test-driven-development)**: Red -> Green -> Refactor cycle to maintain quality and avoid regressions.
-4. **[Structured Code Review](/docs/workflows/code-review)**: Rigorous checklist evaluating correctness, security, performance, and maintainability.
+1. **[Phase 1 — Discovery & Specification](/docs/workflows/discovery)**: Collaborative requirements discovery and writing an approved feature spec (`spec.md`).
+2. **[Phase 2 — Implementation Plan](/docs/workflows/implementation-plan)**: Break approved specs into actionable, milestone-based implementation steps (*optional*).
+3. **[Phase 3 — Test-Driven Development](/docs/workflows/test-driven-development)**: Red -> Green -> Refactor cycle to maintain quality and avoid regressions.
+4. **[Phase 4 — Structured Code Review](/docs/workflows/code-review)**: Rigorous checklist evaluating correctness, security, performance, and maintainability.
+
+> For the full overview, see **[Spec-Driven Development](/docs/workflows/spec-driven-development)**. Starting a new repository? See **[Project Bootstrap](/docs/workflows/project-bootstrap)**.
 
 </div>

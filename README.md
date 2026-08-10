@@ -157,48 +157,51 @@ cp /path/to/ai-context-hub/adapters/claude-code/CLAUDE.md CLAUDE.md
 
 ---
 
-## 🔄 Workflow Overview
+## 🔄 Spec-Driven Development (SDD) Workflow Overview
 
-AI Context Hub enforces a **4-phase development workflow** that ensures every feature is properly specified, planned, implemented, and reviewed:
+AI Context Hub enforces **Spec-Driven Development (SDD)** as the universal workflow for feature and bug development. Every non-trivial change follows a 4-phase cycle:
 
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Discovery   │────▶│    Plan      │────▶│  Implement   │────▶│   Review    │
-│              │     │              │     │              │     │              │
-│ Spec-Driven  │     │ Impl Plan    │     │ TDD Workflow │     │ Code Review  │
-│ Development  │     │ (optional)   │     │              │     │              │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
+┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
+│ Phase 1:         │────▶│ Phase 2:         │────▶│ Phase 3:         │────▶│ Phase 4:         │
+│ Discovery & Spec │     │ Impl Plan        │     │ TDD Cycle        │     │ Code Review      │
+│ (discovery.md)   │     │ (optional)       │     │ (tdd.md)         │     │ (code-review.md) │
+└──────────────────┘     └──────────────────┘     └──────────────────┘     └──────────────────┘
 ```
 
-### Phase 1: Discovery → Specification
+> Hub Overview: [`docs/workflows/spec-driven-development.md`](docs/workflows/spec-driven-development.md)
 
-**Workflow:** `discovery` (or hub `spec-driven-development`)
+### Phase 1: Discovery & Specification
 
-Before writing any code, create a specification. The AI guides you through:
-1. **Discover** — Analyze requirements, explore the codebase, identify constraints
-2. **Specify** — Write a formal spec using the template
-3. **Approve** — Review and approve the spec before implementation
+**Workflow:** [`docs/workflows/discovery.md`](docs/workflows/discovery.md)
 
-### Phase 2: Planning (Optional)
+Before writing any code, create an approved specification (`spec.md`). The AI guides you through:
+1. **Discover** — Analyze requirements, explore codebase, identify constraints with AI recommendations
+2. **Specify** — Write a formal feature spec using standard template
+3. **Approve** — Get explicit user approval before moving to implementation
 
-**Workflow:** `implementation-plan`
+### Phase 2: Implementation Planning (Optional)
 
-Break an approved spec into actionable tasks with dependencies and milestones.
+**Workflow:** [`docs/workflows/implementation-plan.md`](docs/workflows/implementation-plan.md)
 
-### Phase 3: Implementation
+Break an approved spec into actionable tasks with dependencies and milestones. Skip only for simple features.
 
-**Workflow:** `tdd-workflow`
+### Phase 3: TDD Implementation
+
+**Workflow:** [`docs/workflows/test-driven-development.md`](docs/workflows/test-driven-development.md)
 
 Implement features using Test-Driven Development:
-1. **Red** — Write a failing test
+1. **Red** — Write a failing test for acceptance criteria
 2. **Green** — Write minimal code to pass
 3. **Refactor** — Clean up while keeping tests green
 
-### Phase 4: Review
+### Phase 4: Code Review
 
-**Workflow:** `code-review`
+**Workflow:** [`docs/workflows/code-review.md`](docs/workflows/code-review.md)
 
 Systematic code review using a structured checklist covering correctness, security, performance, and maintainability.
+
+> **Starting a new project?** Use the **[Project Bootstrap Workflow](docs/workflows/project-bootstrap.md)** (`project-bootstrap.md`) to set up initial repository structure, context adapters, quality gates, and initial architecture.
 
 ---
 

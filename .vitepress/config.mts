@@ -28,11 +28,16 @@ export default defineConfig({
       {
         text: '🔄 Workflows',
         items: [
-          { text: 'Spec-Driven Development', link: '/docs/workflows/spec-driven-development' },
-          { text: 'Discovery & Specification', link: '/docs/workflows/discovery' },
-          { text: 'Implementation Plan', link: '/docs/workflows/implementation-plan' },
-          { text: 'Test-Driven Development', link: '/docs/workflows/test-driven-development' },
-          { text: 'Code Review', link: '/docs/workflows/code-review' },
+          {
+            text: 'Spec-Driven Development (SDD)',
+            link: '/docs/workflows/spec-driven-development',
+            items: [
+              { text: 'Phase 1: Discovery & Spec', link: '/docs/workflows/discovery' },
+              { text: 'Phase 2: Implementation Plan', link: '/docs/workflows/implementation-plan' },
+              { text: 'Phase 3: TDD Implementation', link: '/docs/workflows/test-driven-development' },
+              { text: 'Phase 4: Code Review', link: '/docs/workflows/code-review' }
+            ]
+          },
           { text: 'Project Bootstrap', link: '/docs/workflows/project-bootstrap' }
         ]
       },
